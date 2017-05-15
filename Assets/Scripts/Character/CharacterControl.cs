@@ -9,17 +9,23 @@ public class CharacterControl : MonoBehaviour
     public int PlayerID = 0;
 
     public float Speed = 5.0f;
+    [Header("Jump")]
     public float JumpHeight = 1.5f;
     public float JumpSpeed = 3f;
     public Ease JumpEase;
     public LayerMask Ground;
     public float GroundDistance = 0.1f;
-
+    [Header("Dash")]
+    public float DashDistance = 2f;
+    public float DashSpeed = 3f;
+    public Ease DashEase;
+    public float DashCoolDown = 3f;
     private Player _player;
     private Rigidbody _body;
 
     private Vector2 _axisInput;
     private bool _isGrounded = true;
+    private bool _canDash = true;
     private Transform _groundChecker;
 
     // Use this for initialization
@@ -44,6 +50,12 @@ public class CharacterControl : MonoBehaviour
                 velocity.y = 0;
                 _body.velocity = velocity;
             });
+        if (_player.GetButtonDown("Dash") && _canDash)
+        {
+            _canDash = false;
+            DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
+            _body.DOMove(transform.forward * DashDistance, DashSpeed).SetRelative().SetSpeedBased();
+        }
     }
 
 
