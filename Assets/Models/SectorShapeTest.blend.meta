@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 34504177e8edb7049ba8bae81e553e3c
-timeCreated: 1494848663
-licenseType: Pro
+guid: f73d4d8417e460445a51f8644fe3b4f6
+timeCreated: 1494881411
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -13,7 +13,7 @@ ModelImporter:
     7400000: Default Take
     9500000: //RootNode
   materials:
-    importMaterials: 1
+    importMaterials: 0
     materialName: 0
     materialSearch: 1
   animations:
@@ -38,7 +38,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 5
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
