@@ -35,7 +35,7 @@ public class RotatingControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_pans.Count <= 0 || !_control.IsGrounded)
+        if (_pans.Count <= 0 /*|| !_control.IsGrounded */|| _control.IsStuned)
             return;
 
 
@@ -44,6 +44,6 @@ public class RotatingControl : MonoBehaviour
         var dist = circlePos.sqrMagnitude;
         circlePos.Normalize();
         var tangent = new Vector3(circlePos.z, 0, -circlePos.x);
-        _body.AddForce(tangent * (_pans.Values[0].Speed * dist * ForceFactor));
+        _body.AddForce(tangent * (_pans.Values[0].Speed * Mathf.Max(dist, 1.0f) * ForceFactor));
     }
 }
