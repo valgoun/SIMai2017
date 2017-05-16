@@ -41,7 +41,7 @@ public class RotatingControl : MonoBehaviour
 
         var circlePos = transform.position - _pans.Values[0].transform.position;
         circlePos.y = 0;
-        var dist = circlePos.sqrMagnitude;
+        var dist = circlePos.magnitude;
         circlePos.Normalize();
         var tangent = new Vector3(circlePos.z, 0, -circlePos.x);
         _body.AddForce(tangent * (_pans.Values[0].Speed * Mathf.Max(dist, 1.0f) * ForceFactor));
