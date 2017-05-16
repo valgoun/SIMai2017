@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9a62b5415a8b7984eadd7f6962c7ca2d
-timeCreated: 1494929191
+guid: 697815a46ca034648830daa31b4dc7a9
+timeCreated: 1494928485
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Object002
+    4300000: chaudron
     9500000: //RootNode
   materials:
     importMaterials: 1
