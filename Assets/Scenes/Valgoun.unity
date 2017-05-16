@@ -958,34 +958,6 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
---- !u!1 &429559412
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 429559413}
-  m_Layer: 0
-  m_Name: EventManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &429559413
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 429559412}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2389891, y: 2.1404235, z: -0.90270394}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456725114 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
@@ -1208,7 +1180,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 70beed7df71081043b3adfbafb615786, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 70beed7df71081043b3adfbafb615786, type: 3}
       propertyPath: m_LocalScale.x
@@ -1295,7 +1267,7 @@ Transform:
   - {fileID: 1652122272}
   - {fileID: 561606741}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &713075530
 MonoBehaviour:
@@ -1816,7 +1788,7 @@ Transform:
   - {fileID: 89711892}
   - {fileID: 1311102922}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1242255387
 GameObject:
@@ -2557,7 +2529,7 @@ Transform:
   - {fileID: 1643031376}
   - {fileID: 797433390}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1607680375
 MonoBehaviour:
@@ -2783,7 +2755,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1668590507
 MonoBehaviour:
@@ -2797,7 +2769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Events:
-  - {fileID: 11400000, guid: 70744bbb1b2de954e892f1fc478afe54, type: 2}
+  - {fileID: 11400000, guid: fe3b886857fbbfd458b5a4446225d933, type: 2}
   InitialTimer: 5
   TimerModification:
   - TimeStamp: 2

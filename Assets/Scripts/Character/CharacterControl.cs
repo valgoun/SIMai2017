@@ -78,7 +78,7 @@ public class CharacterControl : MonoBehaviour
     {
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
 
-        // _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
+        _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
         if (_jumpAvailable == 0 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
         {
             _jumpAvailable++;

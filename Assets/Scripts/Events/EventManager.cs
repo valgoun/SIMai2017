@@ -16,7 +16,6 @@ public class EventManager : MonoBehaviour
         public float TimeStamp;
         public float Timer;
     }
-
     public List<TimerEntry> TimerModification;
 
 
