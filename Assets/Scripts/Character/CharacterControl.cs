@@ -94,7 +94,7 @@ public class CharacterControl : MonoBehaviour
                 _body.velocity = velocity;
             });
         }
-        if (_player.GetButtonDown("Dash") && _canDash)
+        if (_player.GetButtonDown("Dash") && _canDash && _axisInput != Vector2.zero)
         {
             _canDash = false;
             _isDashing = true;
