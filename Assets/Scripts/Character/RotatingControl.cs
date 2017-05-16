@@ -7,24 +7,26 @@ public class RotatingControl : MonoBehaviour
     public float ForceFactor = 1f;
     private Rigidbody _body;
     private SortedList<int, RotationPan> _pans = new SortedList<int, RotationPan>();
+    private CharacterControl _control;
     // Use this for initialization
     void Start()
     {
         _body = GetComponent<Rigidbody>();
+        _control = GetComponent<CharacterControl>();
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
-        var pan = other.transform.GetComponent<RotationPan>();
+        var pan = other.GetComponentInParent<RotationPan>();
         if (pan != null && !_pans.ContainsValue(pan))
         {
             _pans.Add(pan.Id, pan);
         }
     }
 
-    void OnCollisionExit(Collision other)
+    void OnTriggerExit(Collider other)
     {
-        var pan = other.transform.GetComponent<RotationPan>();
+        var pan = other.transform.GetComponentInParent<RotationPan>();
         if (pan != null)
         {
             _pans.Remove(pan.Id);
@@ -33,7 +35,7 @@ public class RotatingControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_pans.Count <= 0)
+        if (_pans.Count <= 0 || !_control.IsGrounded)
             return;
 
 

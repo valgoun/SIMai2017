@@ -20,9 +20,20 @@ public class CharacterControl : MonoBehaviour
     public float DashSpeed = 3f;
     public Ease DashEase;
     public float DashCoolDown = 3f;
+
+    public bool IsGrounded
+    {
+        get
+        {
+            return _isGrounded;
+        }
+    }
+
+
+
+
     private Player _player;
     private Rigidbody _body;
-
     private Vector2 _axisInput;
     private bool _isGrounded = true;
     private bool _canDash = true;
