@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffcd084a5a876d648bac511995b587be, type: 3}
   m_Name: New Gameplay.DebugEvent
   m_EditorClassIdentifier: 
-  Text: 
+  Text: Debug event

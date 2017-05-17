@@ -63,12 +63,24 @@ public class CharacterControl : MonoBehaviour
     {
         if (_isStunned)
             return false;
+
+        foreach (Joystick j in _player.controllers.Joysticks)
+        {
+            if (!j.supportsVibration) continue;
+            j.SetVibration(3f, 3f);
+        }
+
         _isStunned = true;
         _body.drag = 12.0f;
         DOVirtual.DelayedCall(time, () =>
         {
             _isStunned = false;
             _body.drag = 0;
+
+            foreach (Joystick j in _player.controllers.Joysticks)
+            {
+                j.StopVibration();
+            }
         });
         return true;
     }
@@ -101,6 +113,15 @@ public class CharacterControl : MonoBehaviour
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             _dashDirection = transform.forward;
             var dash = _dashDirection * DashDistance;
+
+            var ray = new Ray(_body.position, _dashDirection);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, DashDistance + 3f, Ground))
+            {
+                dash = _dashDirection * (hit.distance - 1f);
+            }
+
+
             DOTween.To(() => _body.position, x =>
             {
                 var pos = x;
