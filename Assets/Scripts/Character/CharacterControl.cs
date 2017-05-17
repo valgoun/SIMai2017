@@ -88,6 +88,8 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_isStunned)
+            return;
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
 
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
