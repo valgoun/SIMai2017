@@ -2,45 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class InstableStatus : MonoBehaviour {
+using System;
 
-    public float duration { get; set;}
+public class InstableStatus : Status {
 
-    private MeshCollider collider;
 
-    private bool isFallen;
+    private MeshCollider col;
+
+    public float fallSpeed { get; set; }
+
+    private Vector3 startPosition;
+
+    private DestroyedStatus status;
+
 
 	// Use this for initialization
 	void Start () {
-        isFallen = false;
-        collider = GetComponent<MeshCollider>();
-        duration = 2.5f;
+        col = GetComponent<MeshCollider>();
+        startPosition = transform.position;
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     void OnCollisionStay(Collision other)
     {
-        Debug.Log(duration);
-        if (other.transform.tag == "Player" && !isFallen && duration != 0)
+        //Debug.Log(duration);
+        if (other.transform.tag == "Player" && isReady)
         {
-            isFallen = true;
             StartCoroutine(fall());
-
         }
     }
 
 
     IEnumerator fall()
     {
-        collider.enabled = false;
-        transform.DOMoveY(-5, 0.25f).SetRelative();
+        col.enabled = false;
+        transform.DOMoveY(-5, fallSpeed);
         yield return new WaitForSeconds(duration);
-        transform.DOMoveY(5, 0.25f).SetRelative();
-        collider.enabled = true;
+        transform.DOMoveY(startPosition.y, fallSpeed);
+        col.enabled = true;
         Destroy(this);
+    }
+
+    public override void exec()
+    {
+        isReady = true;
+        
     }
 }

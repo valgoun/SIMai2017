@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b278f47787fd5f143a05e13fd929a579, type: 3}
   m_Name: New Gameplay.BoilingEvent
   m_EditorClassIdentifier: 
-  fallDuration: 2
+  fallDuration: 2.5
   quantity: 3
+  fallSpeed: 0

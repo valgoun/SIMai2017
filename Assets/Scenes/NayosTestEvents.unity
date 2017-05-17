@@ -1821,7 +1821,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2110,7 +2110,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2557,19 +2557,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 70beed7df71081043b3adfbafb615786, type: 3}
   m_PrefabInternal: {fileID: 1560701897}
---- !u!114 &1560701899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1560701898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 0
-  _id: 0
 --- !u!64 &1560701900
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2983,7 +2970,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3474,7 +3461,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01834bf144796ec44b835ec7be254aae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01834bf144796ec44b835ec7be254aae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3688,7 +3675,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.z
