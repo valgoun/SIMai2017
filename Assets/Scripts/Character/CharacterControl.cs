@@ -78,7 +78,7 @@ public class CharacterControl : MonoBehaviour
     {
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
 
-        // _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
+        _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
         if (_jumpAvailable == 0 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
         {
             _jumpAvailable++;
@@ -94,13 +94,19 @@ public class CharacterControl : MonoBehaviour
                 _body.velocity = velocity;
             });
         }
-        if (_player.GetButtonDown("Dash") && _canDash)
+        if (_player.GetButtonDown("Dash") && _canDash && _axisInput != Vector2.zero)
         {
             _canDash = false;
             _isDashing = true;
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             _dashDirection = transform.forward;
-            _body.DOMove(transform.forward * DashDistance, DashSpeed).SetRelative().SetSpeedBased().OnComplete(() => _isDashing = false);
+            var dash = _dashDirection * DashDistance;
+            DOTween.To(() => _body.position, x =>
+            {
+                var pos = x;
+                pos.y = _body.position.y;
+                _body.MovePosition(pos);
+            }, dash, DashSpeed).SetRelative().SetSpeedBased().OnComplete(() => _isDashing = false).SetEase(DashEase);
         }
     }
 
