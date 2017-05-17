@@ -1178,7 +1178,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalScale.z
@@ -1303,6 +1303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
+  ForceFactor: 0
   _id: 0
 --- !u!54 &634770679
 Rigidbody:
@@ -1380,7 +1381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 60
+  Speed: 40
+  ForceFactor: 1.2
   _id: 1
 --- !u!1001 &732578891
 Prefab:
@@ -1576,7 +1578,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalScale.z
@@ -1851,7 +1853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 30
+  Speed: 50
+  ForceFactor: 0.8
   _id: 3
 --- !u!54 &1142002454
 Rigidbody:
@@ -2140,8 +2143,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   GroundDistance: 0.1
-  DashDistance: 10
-  DashSpeed: 45
+  DashDistance: 7.5
+  DashSpeed: 50
   DashEase: 6
   DashCoolDown: 1
   DashImpactForce: 250
@@ -2172,7 +2175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 9
 --- !u!1 &1311102921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,7 +2350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalScale.z
@@ -2642,7 +2644,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: -30
+  Speed: -45
+  ForceFactor: 1
   _id: 2
 --- !u!1001 &1643031375
 Prefab:
@@ -2689,7 +2692,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalScale.z
@@ -2888,7 +2891,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 9
 --- !u!54 &1752370921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2924,8 +2926,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   GroundDistance: 0.1
-  DashDistance: 10
-  DashSpeed: 45
+  DashDistance: 7.5
+  DashSpeed: 50
   DashEase: 6
   DashCoolDown: 1
   DashImpactForce: 250
