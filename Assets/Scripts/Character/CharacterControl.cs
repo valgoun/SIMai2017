@@ -104,9 +104,9 @@ public class CharacterControl : MonoBehaviour
 
             var ray = new Ray(_body.position, _dashDirection);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, DashDistance, Ground))
+            if (Physics.Raycast(ray, out hit, DashDistance + 3f, Ground))
             {
-                dash = _dashDirection * (hit.distance - 0.5f);
+                dash = _dashDirection * (hit.distance - 1f);
             }
 
 
