@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
 
     private int childsCount;
 
-    private List<GameObject> Sectors;
+    private List<GameObject> Sectors = new List<GameObject>();
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
@@ -27,14 +27,14 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        foreach(GameObject c in Circles)
+        foreach (GameObject c in Circles)
         {
             childsCount = c.transform.childCount;
-
-            for(int i = 0; i < childsCount - 1; i++)
-            {
-                Sectors.Add(c.transform.GetChild(i).gameObject);
-            }
+            if (childsCount > 1)
+                for (int i = 0; i < childsCount - 1; i++)
+                {
+                    Sectors.Add(c.transform.GetChild(i).gameObject);
+                }
         }
     }
 
@@ -44,7 +44,7 @@ public class LevelManager : MonoBehaviour
         List<GameObject> listToreturn = new List<GameObject>();
         int randomIndex;
 
-        for(int i = 0; i < quantity; i++)
+        for (int i = 0; i < quantity; i++)
         {
             randomIndex = Random.Range(0, Sectors.Count);
             if (!listToreturn.Contains(Sectors[randomIndex]))
@@ -96,7 +96,7 @@ public class LevelManager : MonoBehaviour
         }
 
 
-        for(int i = 0; i < quantity; i++)
+        for (int i = 0; i < quantity; i++)
         {
             randomIndex = Random.Range(0, Circles[circleIndex].transform.childCount);
             if (!listToReturn.Contains(Circles[circleIndex].transform.GetChild(randomIndex).gameObject))
@@ -113,7 +113,7 @@ public class LevelManager : MonoBehaviour
 
         List<GameObject> listToReturn = new List<GameObject>();
 
-        foreach(int i in sectorsIndex)
+        foreach (int i in sectorsIndex)
         {
             listToReturn.Add(Circles[circleIndex].transform.GetChild(i).gameObject);
         }
@@ -123,11 +123,12 @@ public class LevelManager : MonoBehaviour
 
     public List<GameObject> getAllCircles()
     {
-      return Circles;
+        return Circles;
     }
 
-    public List<GameObject> getAllSectors(){
-      return Sectors;
+    public List<GameObject> getAllSectors()
+    {
+        return Sectors;
     }
 
 }

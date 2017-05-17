@@ -100,7 +100,13 @@ public class CharacterControl : MonoBehaviour
             _isDashing = true;
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             _dashDirection = transform.forward;
-            _body.DOMove(transform.forward * DashDistance, DashSpeed).SetRelative().SetSpeedBased().OnComplete(() => _isDashing = false);
+            var dash = _dashDirection * DashDistance;
+            DOTween.To(() => _body.position, x =>
+            {
+                var pos = x;
+                pos.y = _body.position.y;
+                _body.MovePosition(pos);
+            }, dash, DashSpeed).SetRelative().SetSpeedBased().OnComplete(() => _isDashing = false).SetEase(DashEase);
         }
     }
 
