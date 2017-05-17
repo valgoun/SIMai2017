@@ -63,12 +63,24 @@ public class CharacterControl : MonoBehaviour
     {
         if (_isStunned)
             return false;
+
+        foreach (Joystick j in _player.controllers.Joysticks)
+        {
+            if (!j.supportsVibration) continue;
+            j.SetVibration(3f, 3f);
+        }
+
         _isStunned = true;
         _body.drag = 12.0f;
         DOVirtual.DelayedCall(time, () =>
         {
             _isStunned = false;
             _body.drag = 0;
+
+            foreach (Joystick j in _player.controllers.Joysticks)
+            {
+                j.StopVibration();
+            }
         });
         return true;
     }
