@@ -102,12 +102,16 @@ public class CharacterControl : MonoBehaviour
         if (_player.GetButtonDown("Jump") && _jumpAvailable > 0)
         {
             _jumpAvailable--;
-            _body.DOMoveY(JumpHeight, JumpSpeed).SetRelative().SetSpeedBased().SetEase(JumpEase).OnUpdate(() =>
+            /*_body.DOMoveY(JumpHeight, JumpSpeed).SetRelative().SetSpeedBased().SetEase(JumpEase).OnUpdate(() =>
             {
                 var velocity = _body.velocity;
                 velocity.y = 0;
                 _body.velocity = velocity;
-            });
+            });*/
+            /*var vel = _body.velocity;
+            vel.y = 15f;
+            _body.velocity = vel;*/
+            _body.AddForce(Vector3.up * 15f, ForceMode.VelocityChange);
         }
         if (_player.GetButtonDown("Dash") && _canDash && _axisInput != Vector2.zero)
         {
@@ -186,7 +190,7 @@ public class CharacterControl : MonoBehaviour
                 j.SetVibration(3f, 3f);
             }
 
-            DOVirtual.DelayedCall(3f, () =>
+            DOVirtual.DelayedCall(1.5f, () =>
             {
                 foreach (Joystick j in _player.controllers.Joysticks)
                 {
