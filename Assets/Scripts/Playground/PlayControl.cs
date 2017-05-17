@@ -49,6 +49,6 @@ public class PlayControl : MonoBehaviour
         if (velocity != Vector3.zero)
             transform.forward = velocity.normalized;
 
-		//drag
+        //drag
     }
 }
