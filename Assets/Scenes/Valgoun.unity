@@ -826,6 +826,21 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
+--- !u!54 &107196752
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 107196750}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &210838136
 Prefab:
   m_ObjectHideFlags: 0
@@ -1002,6 +1017,21 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
+--- !u!54 &314823820
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 314823818}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &456725114 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
@@ -1298,6 +1328,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 0
 --- !u!1 &713075527
 GameObject:
@@ -1361,6 +1398,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 60
+  ForceFactor: 1
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   _id: 1
 --- !u!1001 &732578891
 Prefab:
@@ -1446,6 +1502,21 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
+--- !u!54 &732578899
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 732578893}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &797433389
 GameObject:
   m_ObjectHideFlags: 0
@@ -1877,6 +1948,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 30
+  ForceFactor: 1
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   _id: 3
 --- !u!54 &1142002454
 Rigidbody:
@@ -2197,7 +2287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 1
 --- !u!1 &1311102921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2420,6 +2509,21 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
+--- !u!54 &1590880524
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590880522}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1591243858 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
@@ -2534,6 +2638,21 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
+--- !u!54 &1601061214
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1601061212}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1607617998
 Prefab:
   m_ObjectHideFlags: 0
@@ -2668,6 +2787,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: -30
+  ForceFactor: 1
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: -1
+      outSlope: -1
+      tangentMode: 34
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   _id: 2
 --- !u!1001 &1643031375
 Prefab:
@@ -2761,6 +2899,21 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
+--- !u!54 &1643031379
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1643031377}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &1652122271
 Prefab:
   m_ObjectHideFlags: 0
@@ -2943,7 +3096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 1
 --- !u!54 &1752370921
 Rigidbody:
   m_ObjectHideFlags: 0
