@@ -40,6 +40,8 @@ public class RotatingControl : MonoBehaviour
 
 
         var pan = _pans.Values[0];
+        if (pan.ForceFactor == 0)
+            return;
         var circlePos = transform.position - pan.transform.position;
         circlePos.y = 0;
         var dist = circlePos.sqrMagnitude;

@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
 
     private int childsCount;
 
+    public List<GameObject> destroyedSectors = new List<GameObject>();
+
     private List<GameObject> Sectors = new List<GameObject>();
 
     /// <summary>
