@@ -6,6 +6,7 @@ public class RotationPan : MonoBehaviour
 {
     public float Speed;
     public float ForceFactor;
+    public AnimationCurve ForceAngleCurve;
     public int Id
     {
         get

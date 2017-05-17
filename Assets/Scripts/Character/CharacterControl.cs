@@ -38,6 +38,7 @@ public class CharacterControl : MonoBehaviour
             return _isStunned;
         }
     }
+    //public Vector3
 
 
     private Player _player;
@@ -88,6 +89,8 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_isStunned)
+            return;
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
 
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
@@ -163,6 +166,19 @@ public class CharacterControl : MonoBehaviour
                 other.rigidbody.AddForce(_dashDirection * DashImpactForce, ForceMode.VelocityChange);
             }
             //other.rigidbody.DOMove(other.relativeVelocity.normalized * -DashImpactDistance, DashImpactSpeed).SetRelative().SetSpeedBased().SetEase(Ease.OutExpo);
+        }
+    }
+
+    /// <summary>
+    /// OnTriggerEnter is called when the Collider other enters the trigger.
+    /// </summary>
+    /// <param name="other">The other Collider involved in this collision.</param>
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeathTrigger"))
+        {
+            GameManager.Instance.KillPlayer();
+            Destroy(gameObject);
         }
     }
 }
