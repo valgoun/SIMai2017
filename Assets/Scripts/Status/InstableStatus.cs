@@ -2,29 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class InstableStatus : MonoBehaviour {
+public class InstableStatus : MonoBehaviour
+{
 
-    public float duration { get; set;}
+    public float duration { get; set; }
 
     private MeshCollider collider;
 
     private bool isFallen;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         isFallen = false;
         collider = GetComponent<MeshCollider>();
         duration = 2.5f;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnCollisionStay(Collision other)
     {
-        Debug.Log(duration);
+        // Debug.Log(duration);
         if (other.transform.tag == "Player" && !isFallen && duration != 0)
         {
             isFallen = true;
