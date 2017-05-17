@@ -8,7 +8,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed3faf61a7f2834bbd639a64ca58feb, type: 3}
-  m_Name: New Gameplay.LadleEvent
+  m_Script: {fileID: 11500000, guid: ffcd084a5a876d648bac511995b587be, type: 3}
+  m_Name: DebugEvent
   m_EditorClassIdentifier: 
-  modifierValue: 1.5
+  Text: Debug event

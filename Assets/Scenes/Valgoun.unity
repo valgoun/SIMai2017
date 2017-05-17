@@ -238,7 +238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Events:
-  - {fileID: 11400000, guid: 70744bbb1b2de954e892f1fc478afe54, type: 2}
+  - {fileID: 11400000, guid: 26a62965cb3579e479f6d3984af8e4a6, type: 2}
+  - {fileID: 11400000, guid: 39c9bc6ff8d7201459a0f1229e5f23f5, type: 2}
   InitialTimer: 5
   TimerModification: []
 --- !u!1 &89711891 stripped
@@ -1001,6 +1002,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 54385596223834224, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2273736862827bb4bac90561938ee81f, type: 2}
   m_IsPrefabParent: 0
@@ -1042,6 +1048,11 @@ Prefab:
     - target: {fileID: 4096978881965104, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 54995248618803834, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
@@ -1236,6 +1247,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 54466251763577582, guid: c5dbc7940f81f844c95bddde59e44e2f,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
   m_IsPrefabParent: 0
@@ -1361,6 +1377,11 @@ Prefab:
     - target: {fileID: 4444135863669794, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 54294296821054290, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: m_Interpolate
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
@@ -2903,15 +2924,15 @@ MonoBehaviour:
     - serializedVersion: 2
       time: 0
       value: 1
-      inSlope: -1
-      outSlope: -1
-      tangentMode: 34
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 0
-      inSlope: -1
-      outSlope: -1
-      tangentMode: 34
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0

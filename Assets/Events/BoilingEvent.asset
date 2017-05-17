@@ -8,7 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffcd084a5a876d648bac511995b587be, type: 3}
-  m_Name: New Gameplay.DebugEvent
+  m_Script: {fileID: 11500000, guid: b278f47787fd5f143a05e13fd929a579, type: 3}
+  m_Name: BoilingEvent
   m_EditorClassIdentifier: 
-  Text: Debug event
+  fallDuration: 2
+  quantity: 3
