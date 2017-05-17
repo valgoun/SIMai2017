@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour {
 	void Update () {
         if (test)
         {
-            voteActivation();
+            showPlayerDeath(testValue);
         }
         
         if (Input.GetKeyDown(KeyCode.Escape))
