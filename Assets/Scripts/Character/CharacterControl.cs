@@ -101,6 +101,15 @@ public class CharacterControl : MonoBehaviour
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             _dashDirection = transform.forward;
             var dash = _dashDirection * DashDistance;
+
+            var ray = new Ray(_body.position, _dashDirection);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, DashDistance, Ground))
+            {
+                dash = _dashDirection * (hit.distance - 0.5f);
+            }
+
+
             DOTween.To(() => _body.position, x =>
             {
                 var pos = x;
