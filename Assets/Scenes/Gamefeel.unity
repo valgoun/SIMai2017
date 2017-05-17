@@ -2104,7 +2104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: 0
-  Speed: 15
+  Speed: 20
   JumpHeight: 3
   JumpSpeed: 15
   JumpEase: 21
@@ -2112,8 +2112,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   GroundDistance: 0.1
-  DashDistance: 10
-  DashSpeed: 30
+  DashDistance: 8
+  DashSpeed: 45
   DashEase: 18
   DashCoolDown: 1
   DashImpactForce: 250
@@ -2888,7 +2888,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerID: 1
-  Speed: 15
+  Speed: 20
   JumpHeight: 3
   JumpSpeed: 15
   JumpEase: 21
@@ -2896,8 +2896,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   GroundDistance: 0.1
-  DashDistance: 10
-  DashSpeed: 30
+  DashDistance: 8
+  DashSpeed: 45
   DashEase: 18
   DashCoolDown: 1
   DashImpactForce: 250
