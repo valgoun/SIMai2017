@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
 
     private int childsCount;
 
-    private List<GameObject> Sectors;
+    private List<GameObject> Sectors = new List<GameObject>();
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
