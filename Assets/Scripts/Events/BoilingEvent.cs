@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 namespace Gameplay
 {
@@ -23,9 +22,9 @@ namespace Gameplay
         {
             sectors = LevelManager.Instance.GetRandomsSectors(quantity);
 
-            foreach(GameObject s in sectors)
+            foreach (GameObject s in sectors)
             {
-                
+
                 s.AddComponent<InstableStatus>();
                 s.GetComponent<InstableStatus>().duration = fallDuration;
                 Debug.Log("toto");
@@ -33,10 +32,5 @@ namespace Gameplay
 
         }
 
-        [MenuItem("Assets/Create/Event/BoilingEvent")]
-        public static void CreateAsset()
-        {
-            ScriptableObjectUtility.CreateAsset<BoilingEvent>();
-        }
     }
 }

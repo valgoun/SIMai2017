@@ -179,6 +179,21 @@ public class CharacterControl : MonoBehaviour
         {
             GameManager.Instance.KillPlayer();
             Destroy(gameObject);
+
+            foreach (Joystick j in _player.controllers.Joysticks)
+            {
+                if (!j.supportsVibration) continue;
+                j.SetVibration(3f, 3f);
+            }
+
+            DOVirtual.DelayedCall(3f, () =>
+            {
+                foreach (Joystick j in _player.controllers.Joysticks)
+                {
+                    j.StopVibration();
+                }
+            });
+
         }
     }
 }
