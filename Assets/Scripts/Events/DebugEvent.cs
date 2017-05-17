@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 namespace Gameplay
 {
@@ -15,11 +14,7 @@ namespace Gameplay
             Debug.Log(Text);
         }
 
-        [MenuItem("Assets/Create/Event/DebugEvent")]
-        public static void CreateAsset()
-        {
-            ScriptableObjectUtility.CreateAsset<DebugEvent>();
-        }
+
     }
 }
 

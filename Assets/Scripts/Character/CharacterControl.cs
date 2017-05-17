@@ -38,6 +38,7 @@ public class CharacterControl : MonoBehaviour
             return _isStunned;
         }
     }
+    //public Vector3
 
 
     private Player _player;
@@ -63,12 +64,24 @@ public class CharacterControl : MonoBehaviour
     {
         if (_isStunned)
             return false;
+
+        foreach (Joystick j in _player.controllers.Joysticks)
+        {
+            if (!j.supportsVibration) continue;
+            j.SetVibration(3f, 3f);
+        }
+
         _isStunned = true;
         _body.drag = 12.0f;
         DOVirtual.DelayedCall(time, () =>
         {
             _isStunned = false;
             _body.drag = 0;
+
+            foreach (Joystick j in _player.controllers.Joysticks)
+            {
+                j.StopVibration();
+            }
         });
         return true;
     }
@@ -76,9 +89,11 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_isStunned)
+            return;
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
 
-        // _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
+        _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
         if (_jumpAvailable == 0 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
         {
             _jumpAvailable++;
@@ -100,7 +115,22 @@ public class CharacterControl : MonoBehaviour
             _isDashing = true;
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             _dashDirection = transform.forward;
-            _body.DOMove(transform.forward * DashDistance, DashSpeed).SetRelative().SetSpeedBased().OnComplete(() => _isDashing = false);
+            var dash = _dashDirection * DashDistance;
+
+            var ray = new Ray(_body.position, _dashDirection);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, DashDistance + 3f, Ground))
+            {
+                dash = _dashDirection * (hit.distance - 1f);
+            }
+
+
+            DOTween.To(() => _body.position, x =>
+            {
+                var pos = x;
+                pos.y = _body.position.y;
+                _body.MovePosition(pos);
+            }, dash, DashSpeed).SetRelative().SetSpeedBased().OnComplete(() => _isDashing = false).SetEase(DashEase);
         }
     }
 
@@ -136,6 +166,34 @@ public class CharacterControl : MonoBehaviour
                 other.rigidbody.AddForce(_dashDirection * DashImpactForce, ForceMode.VelocityChange);
             }
             //other.rigidbody.DOMove(other.relativeVelocity.normalized * -DashImpactDistance, DashImpactSpeed).SetRelative().SetSpeedBased().SetEase(Ease.OutExpo);
+        }
+    }
+
+    /// <summary>
+    /// OnTriggerEnter is called when the Collider other enters the trigger.
+    /// </summary>
+    /// <param name="other">The other Collider involved in this collision.</param>
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeathTrigger"))
+        {
+            GameManager.Instance.KillPlayer();
+            Destroy(gameObject);
+
+            foreach (Joystick j in _player.controllers.Joysticks)
+            {
+                if (!j.supportsVibration) continue;
+                j.SetVibration(3f, 3f);
+            }
+
+            DOVirtual.DelayedCall(3f, () =>
+            {
+                foreach (Joystick j in _player.controllers.Joysticks)
+                {
+                    j.StopVibration();
+                }
+            });
+
         }
     }
 }

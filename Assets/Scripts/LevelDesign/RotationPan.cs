@@ -5,6 +5,8 @@ using UnityEngine;
 public class RotationPan : MonoBehaviour
 {
     public float Speed;
+    public float ForceFactor;
+    public AnimationCurve ForceAngleCurve;
     public int Id
     {
         get
@@ -12,6 +14,7 @@ public class RotationPan : MonoBehaviour
             return _id;
         }
     }
+
 
     [SerializeField]
     [Tooltip("définit l'index du cercle concentrique associé, plus il est élevé, plus il est à l'extérieur")]

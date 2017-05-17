@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 namespace Gameplay
 {
@@ -17,7 +16,7 @@ namespace Gameplay
         public override void Exec()
         {
             Circles = LevelManager.Instance.getAllCircles();
-            foreach(GameObject c in Circles)
+            foreach (GameObject c in Circles)
             {
                 //Debug.Log(c.GetComponent<RotationPan>());
                 //Debug.Log(c.GetComponent<RotationPan>().Speed * -modifierValue);
@@ -25,11 +24,7 @@ namespace Gameplay
             }
         }
 
-        [MenuItem("Assets/Create/Event/LadleEvent")]
-        public static void CreateAsset()
-        {
-            ScriptableObjectUtility.CreateAsset<LadleEvent>();
-        }
+
 
     }
 }
