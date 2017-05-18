@@ -463,7 +463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &38
 GameObject:
   m_ObjectHideFlags: 0
@@ -4414,11 +4414,6 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 65412142427112246, guid: 2474539e520bb9c45808a43c42528fc2,
     type: 2}
   m_PrefabInternal: {fileID: 1057925153}
---- !u!65 &1567416510 stripped
-BoxCollider:
-  m_PrefabParentObject: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1898595419}
 --- !u!1001 &1898595419
 Prefab:
   m_ObjectHideFlags: 0
@@ -4458,56 +4453,35 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 135648340238219346, guid: c5dbc7940f81f844c95bddde59e44e2f,
+    - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 0a8e26f23bf650d4c96468f4473fd27b,
-        type: 2}
-    - target: {fileID: 1437564344563344, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
-      propertyPath: m_IsActive
+      propertyPath: ShockWaveTime
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114992562083247792, guid: c5dbc7940f81f844c95bddde59e44e2f,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65740747873544998, guid: c5dbc7940f81f844c95bddde59e44e2f,
-        type: 2}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 13400000, guid: 0a8e26f23bf650d4c96468f4473fd27b,
-        type: 2}
     - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
-      propertyPath: DashTime
-      value: 0.3
+      propertyPath: ShockWaveForce
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
-      propertyPath: DashTrigger
-      value: 
-      objectReference: {fileID: 1567416510}
+      propertyPath: DashImpactRetroForce
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
-      propertyPath: DashImpactForce
+      propertyPath: ShockWaveExplosionForce
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
+        type: 2}
+      propertyPath: PlayerMask.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
+        type: 2}
+      propertyPath: ShockWaveExplosionRadius
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
