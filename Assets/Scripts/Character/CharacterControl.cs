@@ -63,6 +63,7 @@ public class CharacterControl : MonoBehaviour
     private Transform _groundChecker;
     private float _dashSpeed;
     private float _jumpSpeed;
+    private Tween _moveTween, _rotTween, _upTween;
 
     // Use this for initialization
     void Start()
@@ -78,6 +79,16 @@ public class CharacterControl : MonoBehaviour
     {
         if (_isStunned)
             return false;
+
+        if (_isCharging)
+        {
+            StopAllCoroutines();
+            _rotTween.Kill(true);
+            _moveTween.Kill(true);
+            _upTween.Kill(false);
+            _body.useGravity = true;
+            _isCharging = false;
+        }
 
         foreach (Joystick j in _player.controllers.Joysticks)
         {
@@ -157,9 +168,9 @@ public class CharacterControl : MonoBehaviour
         _isCharging = true;
         _body.useGravity = false;
 
-        var RotTween = transform.DOShakeRotation(ShockWaveTime, 12, 20, 45, false).SetEase(Ease.InExpo);
-        var MoveTween = transform.DOShakePosition(ShockWaveTime, new Vector3(0.3f, 0, 0.3f), 15, 45, false).SetEase(Ease.InExpo);
-        var upTween = transform.DOMoveY(2.5f, ShockWaveTime).SetRelative().SetEase(Ease.Linear);
+        _rotTween = transform.DOShakeRotation(ShockWaveTime, 12, 20, 45, false).SetEase(Ease.InExpo);
+        _moveTween = transform.DOShakePosition(ShockWaveTime, new Vector3(0.3f, 0, 0.3f), 15, 45, false).SetEase(Ease.InExpo);
+        _upTween = transform.DOMoveY(2.5f, ShockWaveTime).SetRelative().SetEase(Ease.Linear);
         while (_player.GetButton("ShockWave"))
         {
             _body.useGravity = false;
@@ -170,13 +181,14 @@ public class CharacterControl : MonoBehaviour
             }
             yield return null;
         }
-        RotTween.Kill(true);
-        MoveTween.Kill(true);
-        upTween.Kill(false);
+        _rotTween.Kill(true);
+        _moveTween.Kill(true);
+        _upTween.Kill(false);
         _body.useGravity = true;
         _body.AddForce(Vector3.down * ShockWaveForce, ForceMode.VelocityChange);
         _shockWaveCharge = ShockWaveExplosionForce * timer / ShockWaveTime;
         _isShockWaving = true;
+        _isCharging = false;
 
     }
 
