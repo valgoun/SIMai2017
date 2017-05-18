@@ -6,20 +6,45 @@ using Rewired;
 
 public class GameManager : MonoBehaviour
 {
-    public int PlayerAlive = 4;
+    public int PlayerAlive = 0;
     public static GameManager Instance { get; private set; }
+
+    [SerializeField]
+    private GameObject[] characters;
+
+    [SerializeField]
+    private GameObject[] charactersPrefabs;
+
+    [SerializeField]
+    private List<int> playersID = new List<int>();
 
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
     void Awake()
     {
+
         if (Instance)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        ReInput.ControllerConnectedEvent += OnControllerConnected;
+
+        ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
+
+        if (ReInput.controllers.joystickCount != 0)
+        {
+            foreach (Joystick j in ReInput.controllers.GetJoysticks())
+            {
+                characters[j.id].SetActive(true);
+                playersID.Add(j.id);
+                PlayerAlive++;
+            }
+        }
 
         foreach (var pl in ReInput.players.AllPlayers)
         {
@@ -35,9 +60,27 @@ public class GameManager : MonoBehaviour
             RestartGame();
     }
 
+    public void startGame(List<Transform> charactersSpawnPoints)
+    {
+        foreach(int id in playersID)
+        {
+            Instantiate(charactersPrefabs[id], charactersSpawnPoints[id].position, Quaternion.identity);
+        }
+    }
+
     public void RestartGame()
     {
         Debug.Log("Restart");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void OnControllerConnected(ControllerStatusChangedEventArgs args)
+    {
+        characters[args.controllerId].SetActive(true);
+    }
+
+    public void OnControllerDisconnected(ControllerStatusChangedEventArgs args)
+    {
+        characters[args.controllerId].SetActive(false);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using Rewired;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour {
 
@@ -28,8 +29,6 @@ public class MenuManager : MonoBehaviour {
 
     private Ray ray;
 
-    [SerializeField]
-    private GameObject[] characters;
 
     [SerializeField]
     private LayerMask layer; 
@@ -38,17 +37,7 @@ public class MenuManager : MonoBehaviour {
 	void Start () {
         previousPositions.Add(startPosition);
         
-        ReInput.ControllerConnectedEvent += OnControllerConnected;
-
-        ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
-
-        if(ReInput.controllers.joystickCount != 0)
-        {
-            foreach (Joystick j in ReInput.controllers.GetJoysticks())
-            {
-                characters[j.id].SetActive(true);
-            }
-        }
+       
 	}
 	
 	// Update is called once per frame
@@ -56,7 +45,7 @@ public class MenuManager : MonoBehaviour {
 
 	}
     
-    public void OnHowToPlayClick()
+    public void OnPlayClick()
     {
         previousPositions.Add(playerSelectPosition);
         transform.DOMove(playerSelectPosition.position, 1f);
@@ -81,21 +70,17 @@ public class MenuManager : MonoBehaviour {
         previousPositions.RemoveAt(previousPositions.Count - 1);
     }
 
-    public void OnControllerConnected(ControllerStatusChangedEventArgs args)
-    {
-        characters[args.controllerId].SetActive(true);
-    }
-
-    public void OnControllerDisconnected(ControllerStatusChangedEventArgs args)
-    {
-        characters[args.controllerId].SetActive(false);
-    }
 
     public void OnCreditsClick()
     {
         previousPositions.Add(playerSelectPosition);
         transform.DOMove(creditsPosition.position, 1f);
         transform.DORotateQuaternion(creditsPosition.rotation, 1f);
+    }
+
+    public void OnStartClick()
+    {
+        SceneManager.LoadScene(1);
     }
 
 }
