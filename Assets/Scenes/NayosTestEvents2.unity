@@ -3705,11 +3705,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Events:
   - {fileID: 11400000, guid: 2233887d0dba0414ba7f30f1961ddec6, type: 2}
-  - {fileID: 11400000, guid: 26a62965cb3579e479f6d3984af8e4a6, type: 2}
-  - {fileID: 11400000, guid: 14980c48f8ae0b44987b04d1c1e2240d, type: 2}
-  - {fileID: 11400000, guid: 31c17d54ae5bf924793edb03d804516b, type: 2}
-  - {fileID: 11400000, guid: 39c9bc6ff8d7201459a0f1229e5f23f5, type: 2}
-  - {fileID: 11400000, guid: 31c856d3cbd6c2d42a04bc14adb9c78b, type: 2}
   InitialTimer: 5
   TimerModification: []
 --- !u!114 &238
