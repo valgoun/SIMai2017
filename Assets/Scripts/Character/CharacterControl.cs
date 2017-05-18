@@ -12,16 +12,24 @@ public class CharacterControl : MonoBehaviour
     public float Drag = 5f;
     [Header("Jump")]
     public float JumpHeight = 1.5f;
-    public float JumpSpeed = 3f;
-    public Ease JumpEase;
     public LayerMask Ground;
     public float GroundDistance = 0.1f;
     [Header("Dash")]
     public float DashDistance = 2f;
     public float DashCoolDown = 3f;
-    public float DashImpactForce = 10f;
     public float DashTime = 0.5f;
     public float DashStunedTime = 3f;
+    public float DashTriggerSize = 1.5f;
+    public float DashImpactForce = 30f;
+    public float DashImpactRetroForce = 20f;
+    public Collider DashTrigger;
+    [Header("Dash")]
+    public float ShockWaveTime;
+    public float ShockWaveCooldown;
+    public float ShockWaveForce;
+    public float ShockWaveExplosionForce;
+    public float ShockWaveExplosionRadius;
+    public LayerMask PlayerMask;
 
     public bool IsGrounded
     {
@@ -46,13 +54,18 @@ public class CharacterControl : MonoBehaviour
     private Vector2 _axisInput;
     private bool _isGrounded = true;
     private bool _canDash = true;
+    private bool _canShock = true;
     private bool _isDashing = false;
     private bool _isStunned = false;
+    private bool _isCharging = false;
+    private bool _isShockWaving = false;
+    private float _shockWaveCharge = 0f;
     private Vector3 _dashDirection;
     private int _jumpAvailable = 0;
     private Transform _groundChecker;
     private float _dashSpeed;
     private float _jumpSpeed;
+    private Tween _moveTween, _rotTween, _upTween;
 
     // Use this for initialization
     void Start()
@@ -62,16 +75,22 @@ public class CharacterControl : MonoBehaviour
         _groundChecker = transform.GetChild(0);
         _dashSpeed = DashDistance * (Mathf.Log(1f / (Time.fixedDeltaTime * Drag + 1)) / -Time.fixedDeltaTime);
         _jumpSpeed = Mathf.Sqrt(-2f * Physics.gravity.y * JumpHeight);
-        /*DOVirtual.DelayedCall(2f, () =>
-        {
-            _body.AddForce(Vector3.forward * _dashSpeed * 2f, ForceMode.VelocityChange);
-        });*/
     }
 
     public bool Stun(float time)
     {
         if (_isStunned)
             return false;
+
+        if (_isCharging)
+        {
+            StopAllCoroutines();
+            _rotTween.Kill(true);
+            _moveTween.Kill(true);
+            _upTween.Kill(false);
+            _body.useGravity = true;
+            _isCharging = false;
+        }
 
         foreach (Joystick j in _player.controllers.Joysticks)
         {
@@ -95,7 +114,8 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
-        _body.useGravity = !_isGrounded;
+        if (!_isCharging)
+            _body.useGravity = !_isGrounded;
         if (!_body.useGravity)
         {
             var vel = _body.velocity;
@@ -104,7 +124,10 @@ public class CharacterControl : MonoBehaviour
         }
 
         if (_isStunned)
+        {
+            _axisInput = Vector2.zero;
             return;
+        }
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
 
 
@@ -122,13 +145,56 @@ public class CharacterControl : MonoBehaviour
         {
             _canDash = false;
             _isDashing = true;
+            DashTrigger.gameObject.SetActive(true);
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
-            DOVirtual.DelayedCall(DashTime, () => _isDashing = false);
+            DOVirtual.DelayedCall(DashTime, () =>
+            {
+                _isDashing = false;
+                DashTrigger.gameObject.SetActive(false);
+            });
             _dashDirection = transform.forward;
             _body.AddForce(_dashDirection * _dashSpeed, ForceMode.VelocityChange);
         }
+        if (!_isGrounded && _player.GetButtonDown("ShockWave") && _canShock)
+        {
+            _canShock = false;
+            DOVirtual.DelayedCall(ShockWaveCooldown, () => _canShock = true);
+            StartCoroutine(ShockWave());
+        }
     }
 
+    IEnumerator ShockWave()
+    {
+        var vel = _body.velocity;
+        vel.y = 0f;
+        _body.velocity = vel;
+        var timer = 0f;
+        _isCharging = true;
+        _body.useGravity = false;
+
+        _rotTween = transform.DOShakeRotation(ShockWaveTime, 12, 20, 45, false).SetEase(Ease.InExpo);
+        _moveTween = transform.DOShakePosition(ShockWaveTime, new Vector3(0.3f, 0, 0.3f), 15, 45, false).SetEase(Ease.InExpo);
+        _upTween = transform.DOMoveY(2.5f, ShockWaveTime).SetRelative().SetEase(Ease.Linear);
+        while (_player.GetButton("ShockWave"))
+        {
+            _body.useGravity = false;
+            timer += Time.deltaTime;
+            if (timer >= ShockWaveTime)
+            {
+                break;
+            }
+            yield return null;
+        }
+        _rotTween.Kill(true);
+        _moveTween.Kill(true);
+        _upTween.Kill(false);
+        _body.useGravity = true;
+        _body.AddForce(Vector3.down * ShockWaveForce, ForceMode.VelocityChange);
+        _shockWaveCharge = ShockWaveExplosionForce * timer / ShockWaveTime;
+        _isShockWaving = true;
+        _isCharging = false;
+
+    }
 
     void FixedUpdate()
     {
@@ -153,10 +219,17 @@ public class CharacterControl : MonoBehaviour
     /// <param name="other">The Collision data associated with this collision.</param>
     void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player") && _isDashing)
+        if (_isShockWaving)
         {
-            //other.rigidbody.DOMove(other.relativeVelocity.normalized * -DashImpactDistance, DashImpactSpeed).SetRelative().SetSpeedBased().SetEase(Ease.OutExpo);
+            var pls = Physics.OverlapSphere(transform.position, ShockWaveExplosionRadius, PlayerMask);
+            foreach (var pl in pls)
+            {
+                if (pl.GetComponentInParent<Rigidbody>() != _body)
+                    pl.GetComponentInParent<Rigidbody>().AddExplosionForce(_shockWaveCharge, transform.position, ShockWaveExplosionRadius, 1f, ForceMode.VelocityChange);
+            }
+            _isShockWaving = false;
         }
+
     }
 
     /// <summary>
@@ -169,8 +242,10 @@ public class CharacterControl : MonoBehaviour
         {
             if (other.transform.GetComponentInParent<CharacterControl>().Stun(DashStunedTime))
             {
-                other.GetComponentInParent<Rigidbody>().AddForce(_dashDirection * _dashSpeed * 2f, ForceMode.VelocityChange);
+                other.GetComponentInParent<Rigidbody>().AddForce(_dashDirection * DashImpactForce, ForceMode.VelocityChange);
             }
+            _body.AddForce(-_dashDirection * DashImpactRetroForce, ForceMode.VelocityChange);
+            _isDashing = false;
         }
         if (other.CompareTag("DeathTrigger"))
         {
