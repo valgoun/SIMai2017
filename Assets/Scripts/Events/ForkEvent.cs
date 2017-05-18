@@ -12,6 +12,8 @@ namespace Gameplay
 
         private MovedStatus status;
 
+        private bool canMove = true;
+
         [Tooltip("modificateur de hauteur")]
         [SerializeField]
         private float heightModifier;
@@ -27,18 +29,25 @@ namespace Gameplay
         public override void Exec()
         {
             sectors = LevelManager.Instance.GetRandomsSectors(quantity);
-            foreach(GameObject s in sectors)
+            foreach (GameObject s in sectors)
             {
-                if (!s.GetComponent<MovedStatus>())
+                if (s.GetComponent<DestroyedStatus>())
                 {
-                    status = s.AddComponent<MovedStatus>();
-                    status.moveSpeed = moveSpeed;
-                    status.heightModifier = heightModifier;
-                    status.exec();
+                    canMove = false;
                 }
-                else
+                if (canMove)
                 {
-                    status.exec();
+                    if (!s.GetComponent<MovedStatus>())
+                    {
+                        status = s.AddComponent<MovedStatus>();
+                        status.moveSpeed = moveSpeed;
+                        status.heightModifier = heightModifier;
+                        status.exec();
+                    }
+                    else
+                    {
+                        status.exec();
+                    }
                 }
             }
         }

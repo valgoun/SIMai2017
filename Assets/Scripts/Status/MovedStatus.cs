@@ -16,6 +16,8 @@ public class MovedStatus : Status {
 
     public override void exec()
     {
+        //if(GetComponent<DestroyedStatus>())
+
         position = transform.position;
         if(position.y == 0)
         {

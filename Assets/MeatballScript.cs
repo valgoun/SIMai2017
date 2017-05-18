@@ -20,11 +20,10 @@ public class MeatballScript : MonoBehaviour {
 
     }
 
-    void OnColliderEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.transform.tag == "Player")
         {
-            Debug.Log("toto");
             other.GetComponent<CharacterControl>().Stun(stunTime);
         }
     }
