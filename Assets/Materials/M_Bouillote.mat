@@ -9,7 +9,7 @@ Material:
   m_Name: M_Bouillote
   m_Shader: {fileID: 4800000, guid: 0f4ba1318bdae934983fb64178021f43, type: 3}
   m_ShaderKeywords: _INVERT_SPEED_OIL_ON _INVERT_SPEED_WAVE_DEFORMATION_ON _INVERT_SPEED_WAVE_ROTATION_ON
-  m_LightmapFlags: 4
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -63,6 +63,7 @@ Material:
     - _Color_2: {r: 1, g: 0.56713986, b: 0.28676468, a: 1}
     - _Color_Oil: {r: 0.52205884, g: 0.29613, b: 0.1919334, a: 1}
     - _Depth_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission: {r: 0.38235295, g: 0.23941651, b: 0.10964532, a: 1}
     - _Gloss_Color: {r: 0.29411763, g: 0.26387066, b: 0.20977508, a: 1}
     - _Light_Color_: {r: 1, g: 1, b: 1, a: 1}
     - _Shadow_Color: {r: 0.61764705, g: 0.41763213, b: 0.33607265, a: 1}

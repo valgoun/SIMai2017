@@ -136,8 +136,8 @@ Shader "Custom/shd_clouds" {
                 }
                 void displacement (inout VertexInput v){
                     float4 node_8834 = _Time + _TimeEditor;
-                    float4 node_3022 = _Time + _TimeEditor;
-                    float node_9149_ang = node_3022.g;
+                    float4 node_2796 = _Time + _TimeEditor;
+                    float node_9149_ang = node_2796.g;
                     float node_9149_spd = _TideSpeed;
                     float node_9149_cos = cos(node_9149_spd*node_9149_ang);
                     float node_9149_sin = sin(node_9149_spd*node_9149_ang);
@@ -377,8 +377,8 @@ Shader "Custom/shd_clouds" {
                 }
                 void displacement (inout VertexInput v){
                     float4 node_8834 = _Time + _TimeEditor;
-                    float4 node_3117 = _Time + _TimeEditor;
-                    float node_9149_ang = node_3117.g;
+                    float4 node_827 = _Time + _TimeEditor;
+                    float node_9149_ang = node_827.g;
                     float node_9149_spd = _TideSpeed;
                     float node_9149_cos = cos(node_9149_spd*node_9149_ang);
                     float node_9149_sin = sin(node_9149_spd*node_9149_ang);
@@ -534,8 +534,8 @@ Shader "Custom/shd_clouds" {
                 }
                 void displacement (inout VertexInput v){
                     float4 node_8834 = _Time + _TimeEditor;
-                    float4 node_6529 = _Time + _TimeEditor;
-                    float node_9149_ang = node_6529.g;
+                    float4 node_4706 = _Time + _TimeEditor;
+                    float node_9149_ang = node_4706.g;
                     float node_9149_spd = _TideSpeed;
                     float node_9149_cos = cos(node_9149_spd*node_9149_ang);
                     float node_9149_sin = sin(node_9149_spd*node_9149_ang);
