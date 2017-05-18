@@ -64,7 +64,7 @@ public class LevelManager : MonoBehaviour
     public GameObject GetRandomCircle()
     {
         GameObject circleToReturn = null;
-        int randomIndex = Random.Range(0, Circles.Count);
+        int randomIndex = Random.Range(1, Circles.Count);
 
         if (Circles[randomIndex])
         {
