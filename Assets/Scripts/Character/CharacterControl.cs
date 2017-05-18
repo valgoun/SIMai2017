@@ -147,9 +147,9 @@ public class CharacterControl : MonoBehaviour
         _anim.SetFloat("Speed", _axisInput.magnitude);
 
 
-        if (_jumpAvailable == 0 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
+        if (_jumpAvailable < 2 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
         {
-            _jumpAvailable++;
+            _jumpAvailable = 2;
         }
 
         if (_player.GetButtonDown("Jump") && _jumpAvailable > 0)
