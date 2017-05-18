@@ -24,12 +24,13 @@ public class CharacterControl : MonoBehaviour
     public float DashImpactForce = 30f;
     public float DashImpactRetroForce = 20f;
     public Collider DashTrigger;
-    [Header("Dash")]
+    [Header("Stomp")]
     public float ShockWaveTime;
     public float ShockWaveCooldown;
     public float ShockWaveForce;
     public float ShockWaveExplosionForce;
     public float ShockWaveExplosionRadius;
+    public float ShockWaveRecoveryTime = 0.2f;
     public LayerMask PlayerMask;
 
     public bool IsGrounded
@@ -96,7 +97,7 @@ public class CharacterControl : MonoBehaviour
         foreach (Joystick j in _player.controllers.Joysticks)
         {
             if (!j.supportsVibration) continue;
-            j.SetVibration(3f, 3f);
+            j.SetVibration(1f, 1f);
         }
 
         _isStunned = true;
@@ -176,6 +177,14 @@ public class CharacterControl : MonoBehaviour
         _rotTween = transform.DOShakeRotation(ShockWaveTime, 12, 20, 45, false).SetEase(Ease.InExpo);
         _moveTween = transform.DOShakePosition(ShockWaveTime, new Vector3(0.3f, 0, 0.3f), 15, 45, false).SetEase(Ease.InExpo);
         _upTween = transform.DOMoveY(2.5f, ShockWaveTime).SetRelative().SetEase(Ease.Linear);
+
+        foreach (Joystick j in _player.controllers.Joysticks)
+        {
+            if (!j.supportsVibration) continue;
+            j.SetVibration(0f, 3f);
+        }
+
+
         while (_player.GetButton("ShockWave"))
         {
             _body.useGravity = false;
@@ -186,6 +195,12 @@ public class CharacterControl : MonoBehaviour
             }
             yield return null;
         }
+
+        foreach (Joystick j in _player.controllers.Joysticks)
+        {
+            j.StopVibration();
+        }
+
         _rotTween.Kill(true);
         _moveTween.Kill(true);
         _upTween.Kill(false);
@@ -232,6 +247,7 @@ public class CharacterControl : MonoBehaviour
                     pl.GetComponentInParent<Rigidbody>().AddExplosionForce(_shockWaveCharge, transform.position, ShockWaveExplosionRadius, 1f, ForceMode.VelocityChange);
             }
             _isShockWaving = false;
+            Stun(ShockWaveRecoveryTime);
         }
     }
 

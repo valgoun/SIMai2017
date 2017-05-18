@@ -4690,6 +4690,11 @@ Prefab:
       propertyPath: ShockWaveCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
+        type: 2}
+      propertyPath: ShockWaveRecoveryTime
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
   m_IsPrefabParent: 0
