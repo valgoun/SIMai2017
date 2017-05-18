@@ -69,6 +69,7 @@ public class CharacterControl : MonoBehaviour
     private float _dashSpeed;
     private float _jumpSpeed;
     private Tween _moveTween, _rotTween, _upTween;
+    private Animator _anim;
 
     // Use this for initialization
     void Start()
@@ -78,6 +79,7 @@ public class CharacterControl : MonoBehaviour
         _groundChecker = transform.GetChild(0);
         _dashSpeed = DashDistance * (Mathf.Log(1f / (Time.fixedDeltaTime * Drag + 1)) / -Time.fixedDeltaTime);
         _jumpSpeed = Mathf.Sqrt(-2f * Physics.gravity.y * JumpHeight);
+        _anim = GetComponentInChildren<Animator>();
     }
 
     public bool Stun(float time)
@@ -85,6 +87,7 @@ public class CharacterControl : MonoBehaviour
         if (_isStunned)
             return false;
 
+        _anim.SetBool("Stun", true);
         if (_isCharging)
         {
             StopAllCoroutines();
@@ -105,6 +108,7 @@ public class CharacterControl : MonoBehaviour
         DOVirtual.DelayedCall(time, () =>
         {
             _isStunned = false;
+            _anim.SetBool("Stun", false);
             foreach (Joystick j in _player.controllers.Joysticks)
             {
                 j.StopVibration();
@@ -117,6 +121,8 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
+        _anim.SetBool("Grounded", _isGrounded);
+
 
         if (_isShockWaving && _isGrounded == _body.useGravity)
             Stomp();
@@ -136,6 +142,7 @@ public class CharacterControl : MonoBehaviour
             return;
         }
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
+        _anim.SetFloat("Speed", _axisInput.magnitude);
 
 
         if (_jumpAvailable == 0 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
@@ -145,17 +152,20 @@ public class CharacterControl : MonoBehaviour
 
         if (_player.GetButtonDown("Jump") && _jumpAvailable > 0)
         {
+            _anim.SetTrigger("Jump");
             _jumpAvailable--;
             _body.AddForce(Vector3.up * _jumpSpeed, ForceMode.VelocityChange);
         }
         if (_player.GetButtonDown("Dash") && _canDash /*&& _axisInput != Vector2.zero*/)
         {
+            _anim.SetBool("Dash", true);
             _canDash = false;
             _isDashing = true;
             DashTrigger.gameObject.SetActive(true);
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             DOVirtual.DelayedCall(DashTime, () =>
             {
+                _anim.SetBool("Dash", false);
                 _isDashing = false;
                 DashTrigger.gameObject.SetActive(false);
             });
@@ -168,6 +178,7 @@ public class CharacterControl : MonoBehaviour
             DOVirtual.DelayedCall(ShockWaveCooldown, () => _canShock = true);
             StartCoroutine(ShockWave());
         }
+
     }
 
     IEnumerator ShockWave()
