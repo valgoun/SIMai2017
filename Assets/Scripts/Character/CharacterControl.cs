@@ -13,6 +13,7 @@ public class CharacterControl : MonoBehaviour
     public float Drag = 5f;
     [Header("Jump")]
     public float JumpHeight = 1.5f;
+    public int JumpNb = 2;
     public LayerMask Ground;
     public float GroundDistance = 0.1f;
     [Header("Dash")]
@@ -147,9 +148,9 @@ public class CharacterControl : MonoBehaviour
         _anim.SetFloat("Speed", _axisInput.magnitude);
 
 
-        if (_jumpAvailable < 2 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
+        if (_jumpAvailable < JumpNb && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
         {
-            _jumpAvailable = 2;
+            _jumpAvailable = JumpNb;
         }
 
         if (_player.GetButtonDown("Jump") && _jumpAvailable > 0)
