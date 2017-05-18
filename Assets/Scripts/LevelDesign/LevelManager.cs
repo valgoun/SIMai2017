@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
 
     public List<GameObject> destroyedSectors = new List<GameObject>();
 
+    public List<GameObject> meatBalledcircle = new List<GameObject>();
+
     private List<GameObject> Sectors = new List<GameObject>();
 
     /// <summary>
@@ -33,7 +35,7 @@ public class LevelManager : MonoBehaviour
         {
             childsCount = c.transform.childCount;
             if (childsCount > 1)
-                for (int i = 0; i < childsCount - 1; i++)
+                for (int i = 0; i < childsCount - 2; i++)
                 {
                     Sectors.Add(c.transform.GetChild(i).gameObject);
                 }

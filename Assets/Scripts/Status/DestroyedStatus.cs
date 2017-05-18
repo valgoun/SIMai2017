@@ -9,13 +9,15 @@ public class DestroyedStatus : Status {
 
     private Vector3 startPosition;
 
+    private Status[] status;
+
     public override void exec()
     {
         startPosition = transform.position;
-        transform.DOMoveY(-5, fallSpeed).SetRelative();
+        transform.DOMoveY(-5, fallSpeed);
         if(duration != 0)
         {
-            DOVirtual.DelayedCall(duration, () => transform.DOMoveY(5, fallSpeed).SetRelative());
+            DOVirtual.DelayedCall(duration, () => transform.DOMoveY(startPosition.y, fallSpeed).SetRelative());
         }
         else
         {
@@ -27,5 +29,15 @@ public class DestroyedStatus : Status {
     {
         transform.DOMoveY(startPosition.y, fallSpeed);
         LevelManager.Instance.destroyedSectors.Remove(transform.gameObject);
+        status = GetComponents<Status>();
+
+        foreach(Status s in status)
+        {
+            if (!(s is DestroyedStatus))
+            {
+                Destroy(s);
+            }
+            Destroy(this);
+        }
     }
 }

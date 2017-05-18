@@ -21,6 +21,9 @@ public class MenuManager : MonoBehaviour {
     private Transform optionsPosition;
 
     [SerializeField]
+    private Transform creditsPosition;
+
+    [SerializeField]
     private List<Transform> previousPositions = new List<Transform>();
 
     private Ray ray;
@@ -53,7 +56,7 @@ public class MenuManager : MonoBehaviour {
 
 	}
     
-    public void OnPlayClick()
+    public void OnHowToPlayClick()
     {
         previousPositions.Add(playerSelectPosition);
         transform.DOMove(playerSelectPosition.position, 1f);
@@ -86,6 +89,13 @@ public class MenuManager : MonoBehaviour {
     public void OnControllerDisconnected(ControllerStatusChangedEventArgs args)
     {
         characters[args.controllerId].SetActive(false);
+    }
+
+    public void OnCreditsClick()
+    {
+        previousPositions.Add(playerSelectPosition);
+        transform.DOMove(creditsPosition.position, 1f);
+        transform.DORotateQuaternion(creditsPosition.rotation, 1f);
     }
 
 }

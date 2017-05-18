@@ -4,8 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
-public class InstableStatus : Status {
-
+public class InstableStatus : Status { 
 
     private MeshCollider col;
 
@@ -21,17 +20,25 @@ public class InstableStatus : Status {
         col = GetComponent<MeshCollider>();
         startPosition = transform.position;
 	}
-	
 
-    void OnCollisionStay(Collision other)
-    {
-        //Debug.Log(duration);
-        if (other.transform.tag == "Player" && isReady)
+
+        void OnCollisionStay(Collision other)
         {
-            StartCoroutine(fall());
+            //Debug.Log(duration);
+            if (other.transform.tag == "Player" && isReady)
+            {
+                StartCoroutine(fall());
+            }    // Use this for initialization
         }
+
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 
+   
 
     IEnumerator fall()
     {
@@ -45,7 +52,6 @@ public class InstableStatus : Status {
 
     public override void exec()
     {
-        isReady = true;
-        
+        isReady = true;     
     }
 }

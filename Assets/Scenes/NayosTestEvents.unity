@@ -857,6 +857,8 @@ MonoBehaviour:
   - {fileID: 713075527}
   - {fileID: 1607680372}
   - {fileID: 1142002452}
+  destroyedSectors: []
+  meatBalledcircle: []
 --- !u!1001 &210838136
 Prefab:
   m_ObjectHideFlags: 0
@@ -1063,6 +1065,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &378056457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 378056458}
+  m_Layer: 8
+  m_Name: MeatBallSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &378056458
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378056457}
+  m_LocalRotation: {x: 0.000000020192033, y: -0.38268366, z: -0.000000008363819, w: 0.9238795}
+  m_LocalPosition: {x: -4.133745, y: 10.61, z: -10.17}
+  m_LocalScale: {x: 20, y: 10, z: 20}
+  m_Children: []
+  m_Father: {fileID: 1142002455}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &429559412
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,6 +1443,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 0
 --- !u!1 &713075527
 GameObject:
@@ -1461,6 +1498,7 @@ Transform:
   - {fileID: 1846709709}
   - {fileID: 1652122272}
   - {fileID: 561606741}
+  - {fileID: 866287276}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1476,6 +1514,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 60
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 1
 --- !u!1001 &732578891
 Prefab:
@@ -1619,6 +1664,34 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: a1c22383625e6d5479732250a102b438, type: 3}
+--- !u!1 &866287275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 866287276}
+  m_Layer: 8
+  m_Name: MeatBallSpawn (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &866287276
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 866287275}
+  m_LocalRotation: {x: 0.000000020192033, y: -0.38268366, z: -0.000000008363819, w: 0.9238795}
+  m_LocalPosition: {x: 2.14, y: 10.61, z: 2.48}
+  m_LocalScale: {x: 20, y: 10, z: 20}
+  m_Children: []
+  m_Father: {fileID: 713075529}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &877710792 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
@@ -1821,7 +1894,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1977,6 +2050,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 30
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 3
 --- !u!54 &1142002454
 Rigidbody:
@@ -2012,6 +2092,7 @@ Transform:
   - {fileID: 877710793}
   - {fileID: 89711892}
   - {fileID: 1311102922}
+  - {fileID: 378056458}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2110,7 +2191,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2297,7 +2378,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 1
 --- !u!1 &1311102921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,7 +2462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Events:
-  - {fileID: 11400000, guid: 26a62965cb3579e479f6d3984af8e4a6, type: 2}
+  - {fileID: 11400000, guid: 2233887d0dba0414ba7f30f1961ddec6, type: 2}
   InitialTimer: 5
   TimerModification: []
 --- !u!1 &1369548939
@@ -2941,6 +3021,7 @@ Transform:
   - {fileID: 1601061211}
   - {fileID: 1643031376}
   - {fileID: 797433390}
+  - {fileID: 1750592769}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2956,6 +3037,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: -30
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 2
 --- !u!1001 &1643031375
 Prefab:
@@ -2970,7 +3058,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9a62b5415a8b7984eadd7f6962c7ca2d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3272,6 +3360,34 @@ Transform:
   m_Father: {fileID: 1297178010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1750592768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1750592769}
+  m_Layer: 8
+  m_Name: MeatBallSpawn (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1750592769
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1750592768}
+  m_LocalRotation: {x: 0.000000020192033, y: -0.38268366, z: -0.000000008363819, w: 0.9238795}
+  m_LocalPosition: {x: -6.26, y: 10.61, z: 3.4}
+  m_LocalScale: {x: 20, y: 10, z: 20}
+  m_Children: []
+  m_Father: {fileID: 1607680374}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752370919
 GameObject:
   m_ObjectHideFlags: 0
@@ -3304,7 +3420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 1
 --- !u!54 &1752370921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3461,7 +3576,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01834bf144796ec44b835ec7be254aae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 01834bf144796ec44b835ec7be254aae, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3675,7 +3790,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
       propertyPath: m_LocalPosition.z
