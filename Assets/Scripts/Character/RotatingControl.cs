@@ -48,6 +48,6 @@ public class RotatingControl : MonoBehaviour
         circlePos.Normalize();
         var tangent = new Vector3(circlePos.z, 0, -circlePos.x);
         var angleModif = (180f - Vector3.Angle(tangent, transform.forward)) / 180f;
-        _body.AddForce(tangent * (pan.Speed * Mathf.Max(dist, 1.0f) * pan.ForceFactor * pan.ForceAngleCurve.Evaluate(angleModif)));
+        _body.AddForce(tangent * (pan.Speed * Mathf.Max(dist, 1.0f) * pan.ForceFactor * 0.025f * pan.ForceAngleCurve.Evaluate(angleModif)));
     }
 }
