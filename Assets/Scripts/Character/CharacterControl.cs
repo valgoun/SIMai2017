@@ -9,6 +9,7 @@ public class CharacterControl : MonoBehaviour
     public int PlayerID = 0;
 
     public float Speed = 5.0f;
+    public float MaxVelocity = 450f;
     public float Drag = 5f;
     [Header("Jump")]
     public float JumpHeight = 1.5f;
@@ -208,7 +209,10 @@ public class CharacterControl : MonoBehaviour
 
         var vel = _body.velocity;
         vel.x /= 1f + Drag * Time.fixedDeltaTime;
+        vel.x = Mathf.Clamp(vel.x, -MaxVelocity, MaxVelocity);
         vel.z /= 1f + Drag * Time.fixedDeltaTime;
+        vel.z = Mathf.Clamp(vel.z, -MaxVelocity, MaxVelocity);
+        vel.y = Mathf.Min(vel.y, _jumpSpeed);
         _body.velocity = vel;
     }
 
@@ -229,7 +233,6 @@ public class CharacterControl : MonoBehaviour
             }
             _isShockWaving = false;
         }
-
     }
 
     /// <summary>
