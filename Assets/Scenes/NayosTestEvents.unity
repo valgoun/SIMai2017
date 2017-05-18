@@ -857,6 +857,8 @@ MonoBehaviour:
   - {fileID: 713075527}
   - {fileID: 1607680372}
   - {fileID: 1142002452}
+  destroyedSectors: []
+  meatBalledcircle: []
 --- !u!1001 &210838136
 Prefab:
   m_ObjectHideFlags: 0
@@ -1413,6 +1415,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 0
 --- !u!1 &713075527
 GameObject:
@@ -1476,6 +1485,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 60
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 1
 --- !u!1001 &732578891
 Prefab:
@@ -1977,6 +1993,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 30
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 3
 --- !u!54 &1142002454
 Rigidbody:
@@ -2258,19 +2281,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 0
   Speed: 9
+  Drag: 5
   JumpHeight: 1.5
-  JumpSpeed: 6
-  JumpEase: 21
   Ground:
     serializedVersion: 2
     m_Bits: 256
   GroundDistance: 0.1
   DashDistance: 5
-  DashSpeed: 24
-  DashEase: 18
   DashCoolDown: 0.5
+  DashTime: 0.5
+  DashStunedTime: 3
+  DashTriggerSize: 1.5
   DashImpactForce: 120
-  DashImpactTime: 0.6
+  DashImpactRetroForce: 20
+  DashTrigger: {fileID: 0}
+  ShockWaveTime: 0
+  ShockWaveCooldown: 0
+  ShockWaveForce: 0
+  ShockWaveExplosionForce: 0
+  ShockWaveExplosionRadius: 0
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!54 &1297178012
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2297,7 +2329,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 1
 --- !u!1 &1311102921
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,7 +2413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Events:
-  - {fileID: 11400000, guid: 26a62965cb3579e479f6d3984af8e4a6, type: 2}
+  - {fileID: 11400000, guid: 2233887d0dba0414ba7f30f1961ddec6, type: 2}
   InitialTimer: 5
   TimerModification: []
 --- !u!1 &1369548939
@@ -2557,19 +2588,6 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 70beed7df71081043b3adfbafb615786, type: 3}
   m_PrefabInternal: {fileID: 1560701897}
---- !u!114 &1560701899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1560701898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 0
-  _id: 0
 --- !u!64 &1560701900
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2969,6 +2987,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: -30
+  ForceFactor: 0
+  ForceAngleCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _id: 2
 --- !u!1001 &1643031375
 Prefab:
@@ -3317,7 +3342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b74ea4dd6a821458c2cea97a644945, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ForceFactor: 1
 --- !u!54 &1752370921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3346,19 +3370,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 1
   Speed: 9
+  Drag: 5
   JumpHeight: 1.5
-  JumpSpeed: 6
-  JumpEase: 21
   Ground:
     serializedVersion: 2
     m_Bits: 256
   GroundDistance: 0.1
   DashDistance: 5
-  DashSpeed: 24
-  DashEase: 18
   DashCoolDown: 0.5
+  DashTime: 0.5
+  DashStunedTime: 3
+  DashTriggerSize: 1.5
   DashImpactForce: 120
-  DashImpactTime: 0.6
+  DashImpactRetroForce: 20
+  DashTrigger: {fileID: 0}
+  ShockWaveTime: 0
+  ShockWaveCooldown: 0
+  ShockWaveForce: 0
+  ShockWaveExplosionForce: 0
+  ShockWaveExplosionRadius: 0
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!23 &1752370923
 MeshRenderer:
   m_ObjectHideFlags: 0

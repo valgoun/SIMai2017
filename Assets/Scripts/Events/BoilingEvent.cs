@@ -16,6 +16,12 @@ namespace Gameplay
         [SerializeField]
         private int quantity;
 
+        [Tooltip("Vitesse de chute du bloc")]
+        [SerializeField]
+        private float fallSpeed;
+
+        private InstableStatus status;
+
         private List<GameObject> sectors = new List<GameObject>();
 
         public override void Exec()
@@ -24,13 +30,14 @@ namespace Gameplay
 
             foreach (GameObject s in sectors)
             {
-
-                s.AddComponent<InstableStatus>();
-                s.GetComponent<InstableStatus>().duration = fallDuration;
-                Debug.Log("toto");
+                if (!s.GetComponent<InstableStatus>())
+                {
+                    status = s.AddComponent<InstableStatus>();
+                    status.fallSpeed = fallSpeed;
+                    status.duration = fallDuration;
+                    status.exec();
+                }
             }
-
         }
-
     }
 }

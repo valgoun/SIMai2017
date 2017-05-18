@@ -49,4 +49,28 @@ public static class ScriptableObjectUtility
     {
         CreateAsset<LadleEvent>();
     }
+
+    [MenuItem("Assets/Create/Event/FoamEvent")]
+    public static void CreateAssetFoamEvent()
+    {
+        CreateAsset<FoamEvent>();
+    }
+
+    [MenuItem("Assets/Create/Event/PotatoEvent")]
+    public static void CreateAssetPotatoEvent()
+    {
+        CreateAsset<PotatoEvent>();
+    }
+
+    [MenuItem("Assets/Create/Event/ForkEvent")]
+    public static void CreateAssetForkEvent()
+    {
+        CreateAsset<ForkEvent>();
+    }
+
+    [MenuItem("Assets/Create/Event/MeatballEvent")]
+    public static void CreateAssetMeatballEvent()
+    {
+        CreateAsset<MeatballEvent>();
+    }
 }
