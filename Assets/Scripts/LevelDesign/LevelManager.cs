@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public List<GameObject> Circles;
+    public float CenterTimeDisparition = 60f;
     public static LevelManager Instance { get; private set; }
 
     private int childsCount;
@@ -27,6 +28,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        Sound_Manager.Instance.MUSIQUE_Ambience_Musique_IG();
+        Sound_Manager.Instance.MUSIQUE_Ambience_HotPot();
         foreach (GameObject c in Circles)
         {
             childsCount = c.transform.childCount;
@@ -36,6 +39,7 @@ public class LevelManager : MonoBehaviour
                     Sectors.Add(c.transform.GetChild(i).gameObject);
                 }
         }
+        Destroy(Circles[0], CenterTimeDisparition);
     }
 
     public List<GameObject> GetRandomsSectors(int quantity)
