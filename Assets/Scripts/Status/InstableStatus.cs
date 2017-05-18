@@ -45,7 +45,6 @@ public class InstableStatus : Status {
 
     public override void exec()
     {
-        isReady = true;
-        
+        isReady = true;     
     }
 }
