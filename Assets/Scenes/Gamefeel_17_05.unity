@@ -3974,7 +3974,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
 --- !u!108 &233
 Light:
   m_ObjectHideFlags: 0
@@ -4623,8 +4623,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 1
+      time: -0.0041656494
+      value: 1.0518723
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4693,6 +4693,7 @@ MonoBehaviour:
   - {fileID: 19}
   - {fileID: 41}
   - {fileID: 26}
+  destroyedSectors: []
 --- !u!114 &244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4710,8 +4711,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 1
+      time: -0.0041656494
+      value: 1.0506287
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4820,8 +4821,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
-      time: 0
-      value: 1
+      time: 0.0083351135
+      value: 1.0512466
       inSlope: 0
       outSlope: 0
       tangentMode: 0
