@@ -70,6 +70,7 @@ public class CharacterControl : MonoBehaviour
     private float _jumpSpeed;
     private Tween _moveTween, _rotTween, _upTween;
     private Animator _anim;
+    private Transform _graph;
 
     // Use this for initialization
     void Start()
@@ -80,6 +81,7 @@ public class CharacterControl : MonoBehaviour
         _dashSpeed = DashDistance * (Mathf.Log(1f / (Time.fixedDeltaTime * Drag + 1)) / -Time.fixedDeltaTime);
         _jumpSpeed = Mathf.Sqrt(-2f * Physics.gravity.y * JumpHeight);
         _anim = GetComponentInChildren<Animator>();
+        _graph = transform.GetChild(1);
     }
 
     public bool Stun(float time)
@@ -259,6 +261,7 @@ public class CharacterControl : MonoBehaviour
             }
 
         }
+        _graph.DOScale(new Vector3(1.6f, 0.1f, 1.6f), 0.2f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.OutCirc);
         _isShockWaving = false;
         Stun(ShockWaveRecoveryTime);
     }
