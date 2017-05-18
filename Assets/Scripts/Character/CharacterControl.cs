@@ -115,7 +115,10 @@ public class CharacterControl : MonoBehaviour
         }
 
         if (_isStunned)
+        {
+            _axisInput = Vector2.zero;
             return;
+        }
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
 
 
