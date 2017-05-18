@@ -222,8 +222,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 73}
-  - component: {fileID: 240}
   - component: {fileID: 264}
+  - component: {fileID: 240}
   m_Layer: 8
   m_Name: Small
   m_TagString: Untagged
@@ -756,6 +756,7 @@ Transform:
   - {fileID: 97}
   - {fileID: 70}
   - {fileID: 603669383}
+  - {fileID: 270964874}
   m_Father: {fileID: 65}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -831,6 +832,7 @@ Transform:
   - {fileID: 726492794}
   - {fileID: 1268163869}
   - {fileID: 232683970}
+  - {fileID: 1847595658}
   m_Father: {fileID: 65}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -934,6 +936,7 @@ Transform:
   - {fileID: 76}
   - {fileID: 1202494041}
   - {fileID: 1561672085}
+  - {fileID: 1292495012}
   m_Father: {fileID: 65}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1031,7 +1034,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 54}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.56, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 91}
@@ -2956,20 +2959,22 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 622782986}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b7bdb7237b93a14eba589b34286cb3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Events:
   - {fileID: 11400000, guid: 26a62965cb3579e479f6d3984af8e4a6, type: 2}
+  - {fileID: 11400000, guid: 14980c48f8ae0b44987b04d1c1e2240d, type: 2}
+  - {fileID: 11400000, guid: 31c17d54ae5bf924793edb03d804516b, type: 2}
   - {fileID: 11400000, guid: 39c9bc6ff8d7201459a0f1229e5f23f5, type: 2}
-  - {fileID: 11400000, guid: 39c9bc6ff8d7201459a0f1229e5f23f5, type: 2}
-  - {fileID: 11400000, guid: 39c9bc6ff8d7201459a0f1229e5f23f5, type: 2}
-  - {fileID: 11400000, guid: 39c9bc6ff8d7201459a0f1229e5f23f5, type: 2}
-  - {fileID: 11400000, guid: 39c9bc6ff8d7201459a0f1229e5f23f5, type: 2}
+  - {fileID: 11400000, guid: 2233887d0dba0414ba7f30f1961ddec6, type: 2}
+  - {fileID: 11400000, guid: 31c856d3cbd6c2d42a04bc14adb9c78b, type: 2}
   InitialTimer: 5
-  TimerModification: []
+  TimerModification:
+  - TimeStamp: 5
+    Timer: 1
 --- !u!114 &238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2982,6 +2987,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerAlive: 4
+  characters: []
+  charactersPrefabs: []
+  playersID: 
 --- !u!114 &239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3025,7 +3033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 30
+  Speed: 60
   ForceFactor: 1.5
   ForceAngleCurve:
     serializedVersion: 2
@@ -3038,7 +3046,7 @@ MonoBehaviour:
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 1
+      value: 0.9756241
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3058,11 +3066,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Circles:
-  - {fileID: 18}
   - {fileID: 19}
   - {fileID: 41}
   - {fileID: 26}
   CenterTimeDisparition: 60
+  destroyedSectors: []
+  meatBalledcircle: []
 --- !u!114 &244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3074,7 +3083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1
+  Speed: 20
   ForceFactor: 0.4
   ForceAngleCurve:
     serializedVersion: 2
@@ -3087,7 +3096,7 @@ MonoBehaviour:
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 1
+      value: 0.97187805
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3106,7 +3115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5043fab530394b641863ed204248672c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 2
+  Speed: -40
   ForceFactor: 0.7
   ForceAngleCurve:
     serializedVersion: 2
@@ -3119,7 +3128,7 @@ MonoBehaviour:
       tangentMode: 0
     - serializedVersion: 2
       time: 1
-      value: 1
+      value: 0.97437286
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -3762,6 +3771,34 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 1ff669437c1e2ee43a5a15c59411ed85, type: 3}
   m_PrefabInternal: {fileID: 259672417}
+--- !u!1 &270964873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 270964874}
+  m_Layer: 8
+  m_Name: MeatBallSpawn (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &270964874
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 270964873}
+  m_LocalRotation: {x: 0.000000020192033, y: -0.38268366, z: -0.000000008363819, w: 0.9238795}
+  m_LocalPosition: {x: 2.3199997, y: 7.82, z: 2.27}
+  m_LocalScale: {x: 10.416666, y: 6.25, z: 10.416666}
+  m_Children: []
+  m_Father: {fileID: 73}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &284435936 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3dc480a5c83f3814883f568b602ca263, type: 3}
@@ -3817,7 +3854,7 @@ Prefab:
     - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
         type: 2}
       propertyPath: PlayerID
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4715880117776930, guid: 2273736862827bb4bac90561938ee81f, type: 2}
       propertyPath: m_RootOrder
@@ -3830,6 +3867,86 @@ Prefab:
     - target: {fileID: 4639701725326196, guid: 2273736862827bb4bac90561938ee81f, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: Speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: JumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashCoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashStunedTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashTriggerSize
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashImpactForce
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashImpactRetroForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashTrigger
+      value: 
+      objectReference: {fileID: 921547198}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: ShockWaveCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: ShockWaveForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: ShockWaveExplosionRadius
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: ShockWaveStunTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: PlayerMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2273736862827bb4bac90561938ee81f, type: 2}
@@ -4677,7 +4794,7 @@ Prefab:
     - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
         type: 2}
       propertyPath: PlayerID
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 95275855290248932, guid: 3e180b4a3f4aa314c98769052d77f59f,
         type: 2}
@@ -4692,7 +4809,7 @@ Prefab:
     - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
         type: 2}
       propertyPath: ShockWaveForce
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
         type: 2}
@@ -4702,16 +4819,81 @@ Prefab:
     - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
         type: 2}
       propertyPath: ShockWaveExplosionRadius
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
         type: 2}
       propertyPath: ShockWaveStunTime
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1684610566589182, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: Speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: JumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashCoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashStunedTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashTriggerSize
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashImpactForce
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashImpactRetroForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashTrigger
+      value: 
+      objectReference: {fileID: 1739498206}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: ShockWaveCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: PlayerMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
@@ -5013,7 +5195,7 @@ Prefab:
     - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
         type: 2}
       propertyPath: PlayerID
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
         type: 2}
@@ -5023,7 +5205,7 @@ Prefab:
     - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
         type: 2}
       propertyPath: ShockWaveForce
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
         type: 2}
@@ -5033,12 +5215,12 @@ Prefab:
     - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
         type: 2}
       propertyPath: ShockWaveExplosionRadius
-      value: 10
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
         type: 2}
       propertyPath: ShockWaveStunTime
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
         type: 2}
@@ -5060,6 +5242,71 @@ Prefab:
     - target: {fileID: 4036674198281848, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: Speed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: MaxVelocity
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: JumpHeight
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashCoolDown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashStunedTime
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashTriggerSize
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashImpactForce
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashImpactRetroForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashTrigger
+      value: 
+      objectReference: {fileID: 259501293}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: ShockWaveCooldown
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: PlayerMask.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
@@ -5512,6 +5759,34 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1268163868}
   m_Mesh: {fileID: 4300000, guid: ff833c59ba552634eaf44116ddaeb376, type: 3}
+--- !u!1 &1292495011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1292495012}
+  m_Layer: 8
+  m_Name: MeatBallSpawn (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1292495012
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1292495011}
+  m_LocalRotation: {x: 0.000000020192033, y: -0.38268366, z: -0.000000008363819, w: 0.9238795}
+  m_LocalPosition: {x: -6.0200005, y: 8.16, z: 3.14}
+  m_LocalScale: {x: 10.416666, y: 6.25, z: 10.416666}
+  m_Children: []
+  m_Father: {fileID: 95}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1347163517
 Prefab:
   m_ObjectHideFlags: 0
@@ -6304,6 +6579,34 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 0940ffdc60c5133409583c1db1bc98de, type: 3}
   m_PrefabInternal: {fileID: 894302135}
+--- !u!1 &1847595657
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1847595658}
+  m_Layer: 8
+  m_Name: MeatBallSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1847595658
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1847595657}
+  m_LocalRotation: {x: 0.000000020192033, y: -0.38268366, z: -0.000000008363819, w: 0.9238795}
+  m_LocalPosition: {x: 3.9999998, y: 6.77, z: -10.5}
+  m_LocalScale: {x: 10.416666, y: 6.25, z: 10.416666}
+  m_Children: []
+  m_Father: {fileID: 80}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1966008640
 Prefab:
   m_ObjectHideFlags: 0

@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         {
             foreach (Joystick j in ReInput.controllers.GetJoysticks())
             {
-                characters[j.id].SetActive(true);
+               	//characters[j.id].SetActive(true);
                 playersID.Add(j.id);
                 PlayerAlive++;
             }
