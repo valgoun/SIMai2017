@@ -26,6 +26,7 @@ namespace Gameplay
 
         public override void Exec()
         {
+            Debug.Log("caca");
             sectors = LevelManager.Instance.GetRandomsSectors(quantity);
 
             foreach (GameObject s in sectors)
