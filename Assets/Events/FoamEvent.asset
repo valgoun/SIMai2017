@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quantity: 3
   duration: 2.5
-  fallSpeed: 0.2
+  fallSpeed: 1.5

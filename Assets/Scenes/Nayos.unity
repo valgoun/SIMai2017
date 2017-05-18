@@ -701,6 +701,7 @@ GameObject:
   - component: {fileID: 206966298}
   - component: {fileID: 206966297}
   - component: {fileID: 206966296}
+  - component: {fileID: 206966300}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -764,7 +765,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 1627427ea7fb7a8408cc1d2e930345f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d20fd7421d4213f42b34cd02492425e1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -798,6 +799,53 @@ RectTransform:
   m_AnchoredPosition: {x: -1.41, y: -0.74}
   m_SizeDelta: {x: 1.5, y: 1.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &206966300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 206966295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 504465691}
+          m_MethodName: OnSelect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 10
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 504465691}
+          m_MethodName: OnDeselect
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1001 &207478750
 Prefab:
   m_ObjectHideFlags: 0
@@ -2082,10 +2130,35 @@ MonoBehaviour:
   - {fileID: 83815882}
   - {fileID: 851058753}
   charactersPrefabs:
-  - {fileID: 1437564344563344, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
+  - {fileID: 0}
   - {fileID: 1764636341970552, guid: 2273736862827bb4bac90561938ee81f, type: 2}
   - {fileID: 1830636071087872, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
   - {fileID: 1684610566589182, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
+  playersDatas:
+  - id: 0
+    isAlive: 0
+    Score: 0
+    deathImage: {fileID: 0}
+    playerPortrait: {fileID: 0}
+    victoryStamps: []
+  - id: 0
+    isAlive: 0
+    Score: 0
+    deathImage: {fileID: 0}
+    playerPortrait: {fileID: 0}
+    victoryStamps: []
+  - id: 0
+    isAlive: 0
+    Score: 0
+    deathImage: {fileID: 0}
+    playerPortrait: {fileID: 0}
+    victoryStamps: []
+  - id: 0
+    isAlive: 0
+    Score: 0
+    deathImage: {fileID: 0}
+    playerPortrait: {fileID: 0}
+    victoryStamps: []
   playersID: 
 --- !u!4 &504465692
 Transform:
@@ -7642,7 +7715,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ea6bcb3ca47fa8543a4a3c7d7215b411, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7eae6d11473c5ef43ad3d63288ca99c7, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

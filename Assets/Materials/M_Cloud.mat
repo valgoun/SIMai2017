@@ -31,8 +31,8 @@ Material:
     - _Specular: 0
     - _Tessellation: 1
     - _TideSpeed: 0.5
-    - _hauteur_vagues: 0.01
-    - _opacity: 0.307
+    - _hauteur_vagues: 0
+    - _opacity: 0.3
     m_Colors:
     - _CloudsColor: {r: 1, g: 0.639858, b: 0.50735295, a: 1}
     - _Emission: {r: 0.53676474, g: 0.29287973, b: 0.031574395, a: 1}

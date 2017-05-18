@@ -9,9 +9,11 @@ public class CharacterControl : MonoBehaviour
     public int PlayerID = 0;
 
     public float Speed = 5.0f;
+    public float MaxVelocity = 450f;
     public float Drag = 5f;
     [Header("Jump")]
     public float JumpHeight = 1.5f;
+    public int JumpNb = 2;
     public LayerMask Ground;
     public float GroundDistance = 0.1f;
     [Header("Dash")]
@@ -23,12 +25,14 @@ public class CharacterControl : MonoBehaviour
     public float DashImpactForce = 30f;
     public float DashImpactRetroForce = 20f;
     public Collider DashTrigger;
-    [Header("Dash")]
+    [Header("Stomp")]
     public float ShockWaveTime;
     public float ShockWaveCooldown;
     public float ShockWaveForce;
     public float ShockWaveExplosionForce;
     public float ShockWaveExplosionRadius;
+    public float ShockWaveStunTime;
+    public float ShockWaveRecoveryTime = 0.2f;
     public LayerMask PlayerMask;
 
     public bool IsGrounded
@@ -66,6 +70,8 @@ public class CharacterControl : MonoBehaviour
     private float _dashSpeed;
     private float _jumpSpeed;
     private Tween _moveTween, _rotTween, _upTween;
+    private Animator _anim;
+    private Transform _graph;
 
     // Use this for initialization
     void Start()
@@ -75,6 +81,8 @@ public class CharacterControl : MonoBehaviour
         _groundChecker = transform.GetChild(0);
         _dashSpeed = DashDistance * (Mathf.Log(1f / (Time.fixedDeltaTime * Drag + 1)) / -Time.fixedDeltaTime);
         _jumpSpeed = Mathf.Sqrt(-2f * Physics.gravity.y * JumpHeight);
+        _anim = GetComponentInChildren<Animator>();
+        _graph = transform.GetChild(1);
     }
 
     public bool Stun(float time)
@@ -82,6 +90,7 @@ public class CharacterControl : MonoBehaviour
         if (_isStunned)
             return false;
 
+        _anim.SetBool("Stun", true);
         if (_isCharging)
         {
             StopAllCoroutines();
@@ -95,13 +104,14 @@ public class CharacterControl : MonoBehaviour
         foreach (Joystick j in _player.controllers.Joysticks)
         {
             if (!j.supportsVibration) continue;
-            j.SetVibration(3f, 3f);
+            j.SetVibration(1f, 1f);
         }
 
         _isStunned = true;
         DOVirtual.DelayedCall(time, () =>
         {
             _isStunned = false;
+            _anim.SetBool("Stun", false);
             foreach (Joystick j in _player.controllers.Joysticks)
             {
                 j.StopVibration();
@@ -114,6 +124,12 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
+        _anim.SetBool("Grounded", _isGrounded);
+
+
+        if (_isShockWaving && _isGrounded == _body.useGravity)
+            Stomp();
+
         if (!_isCharging)
             _body.useGravity = !_isGrounded;
         if (!_body.useGravity)
@@ -129,26 +145,31 @@ public class CharacterControl : MonoBehaviour
             return;
         }
         _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
+        _anim.SetFloat("Speed", _axisInput.magnitude);
 
 
-        if (_jumpAvailable == 0 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
+        if (_jumpAvailable < JumpNb && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
         {
-            _jumpAvailable++;
+            _jumpAvailable = JumpNb;
         }
 
         if (_player.GetButtonDown("Jump") && _jumpAvailable > 0)
         {
+            _anim.SetTrigger("Jump");
             _jumpAvailable--;
             _body.AddForce(Vector3.up * _jumpSpeed, ForceMode.VelocityChange);
         }
         if (_player.GetButtonDown("Dash") && _canDash /*&& _axisInput != Vector2.zero*/)
         {
+            _anim.SetBool("Dash", true);
+            Sound_Manager.Instance.SFX_Mouv_Dash();
             _canDash = false;
             _isDashing = true;
             DashTrigger.gameObject.SetActive(true);
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             DOVirtual.DelayedCall(DashTime, () =>
             {
+                _anim.SetBool("Dash", false);
                 _isDashing = false;
                 DashTrigger.gameObject.SetActive(false);
             });
@@ -161,6 +182,7 @@ public class CharacterControl : MonoBehaviour
             DOVirtual.DelayedCall(ShockWaveCooldown, () => _canShock = true);
             StartCoroutine(ShockWave());
         }
+
     }
 
     IEnumerator ShockWave()
@@ -175,6 +197,14 @@ public class CharacterControl : MonoBehaviour
         _rotTween = transform.DOShakeRotation(ShockWaveTime, 12, 20, 45, false).SetEase(Ease.InExpo);
         _moveTween = transform.DOShakePosition(ShockWaveTime, new Vector3(0.3f, 0, 0.3f), 15, 45, false).SetEase(Ease.InExpo);
         _upTween = transform.DOMoveY(2.5f, ShockWaveTime).SetRelative().SetEase(Ease.Linear);
+
+        foreach (Joystick j in _player.controllers.Joysticks)
+        {
+            if (!j.supportsVibration) continue;
+            j.SetVibration(0f, 3f);
+        }
+
+
         while (_player.GetButton("ShockWave"))
         {
             _body.useGravity = false;
@@ -185,6 +215,12 @@ public class CharacterControl : MonoBehaviour
             }
             yield return null;
         }
+
+        foreach (Joystick j in _player.controllers.Joysticks)
+        {
+            j.StopVibration();
+        }
+
         _rotTween.Kill(true);
         _moveTween.Kill(true);
         _upTween.Kill(false);
@@ -208,8 +244,28 @@ public class CharacterControl : MonoBehaviour
 
         var vel = _body.velocity;
         vel.x /= 1f + Drag * Time.fixedDeltaTime;
+        vel.x = Mathf.Clamp(vel.x, -MaxVelocity, MaxVelocity);
         vel.z /= 1f + Drag * Time.fixedDeltaTime;
+        vel.z = Mathf.Clamp(vel.z, -MaxVelocity, MaxVelocity);
+        vel.y = Mathf.Min(vel.y, _jumpSpeed);
         _body.velocity = vel;
+    }
+
+    private void Stomp()
+    {
+        var pls = Physics.OverlapSphere(transform.position, ShockWaveExplosionRadius, PlayerMask);
+        foreach (var pl in pls)
+        {
+            if (pl.GetComponentInParent<Rigidbody>() != _body)
+            {
+                pl.GetComponentInParent<Rigidbody>().AddExplosionForce(_shockWaveCharge, transform.position, ShockWaveExplosionRadius, 1f, ForceMode.VelocityChange);
+                pl.GetComponentInParent<CharacterControl>().Stun(ShockWaveStunTime);
+            }
+
+        }
+        _graph.DOScale(new Vector3(1.6f, 0.1f, 1.6f), 0.2f).SetLoops(2, LoopType.Yoyo).SetEase(Ease.OutCirc);
+        _isShockWaving = false;
+        Stun(ShockWaveRecoveryTime);
     }
 
     /// <summary>
@@ -221,15 +277,8 @@ public class CharacterControl : MonoBehaviour
     {
         if (_isShockWaving)
         {
-            var pls = Physics.OverlapSphere(transform.position, ShockWaveExplosionRadius, PlayerMask);
-            foreach (var pl in pls)
-            {
-                if (pl.GetComponentInParent<Rigidbody>() != _body)
-                    pl.GetComponentInParent<Rigidbody>().AddExplosionForce(_shockWaveCharge, transform.position, ShockWaveExplosionRadius, 1f, ForceMode.VelocityChange);
-            }
-            _isShockWaving = false;
+            Stomp();
         }
-
     }
 
     /// <summary>
@@ -242,6 +291,7 @@ public class CharacterControl : MonoBehaviour
         {
             if (other.transform.GetComponentInParent<CharacterControl>().Stun(DashStunedTime))
             {
+                Sound_Manager.Instance.SFX_Hit_Dash();
                 other.GetComponentInParent<Rigidbody>().AddForce(_dashDirection * DashImpactForce, ForceMode.VelocityChange);
             }
             _body.AddForce(-_dashDirection * DashImpactRetroForce, ForceMode.VelocityChange);

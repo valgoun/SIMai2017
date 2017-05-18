@@ -35,7 +35,7 @@ public class RotatingControl : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_pans.Count <= 0 || _control.IsStuned)
+        if (_pans.Count <= 0 || !_control.IsGrounded)
             return;
 
 

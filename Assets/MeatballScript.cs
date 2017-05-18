@@ -7,10 +7,13 @@ public class MeatballScript : MonoBehaviour {
 
     [SerializeField]
     private float stunTime;
+
+	public float timer = 5f;
     
 	// Use this for initialization
 	void Start () {
         transform.DOMoveY(-8, 0.3f).SetRelative();
+		Destroy (gameObject, timer);
 	}
 	
 	// Update is called once per frame

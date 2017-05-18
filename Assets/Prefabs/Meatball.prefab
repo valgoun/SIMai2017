@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stunTime: 1
+  timer: 8
 --- !u!135 &135794600231071206
 SphereCollider:
   m_ObjectHideFlags: 1

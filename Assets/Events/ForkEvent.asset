@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: ForkEvent
   m_EditorClassIdentifier: 
   heightModifier: 1
-  moveSpeed: 0.2
+  moveSpeed: 1
   quantity: 3
