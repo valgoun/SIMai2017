@@ -4048,6 +4048,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &11622236 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65974218041834868, guid: 3e180b4a3f4aa314c98769052d77f59f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1470415220}
+--- !u!65 &458887830 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65669164656407320, guid: 2273736862827bb4bac90561938ee81f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1259025249}
 --- !u!1 &622782986
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,6 +4121,11 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: DashTrigger
+      value: 
+      objectReference: {fileID: 1548599681}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
   m_IsPrefabParent: 0
@@ -4286,6 +4301,15 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1294220724191996, guid: 2273736862827bb4bac90561938ee81f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114132447900994594, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: DashTrigger
+      value: 
+      objectReference: {fileID: 458887830}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2273736862827bb4bac90561938ee81f, type: 2}
   m_IsPrefabParent: 0
@@ -4336,6 +4360,11 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: DashTrigger
+      value: 
+      objectReference: {fileID: 11622236}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
   m_IsPrefabParent: 0
@@ -4380,6 +4409,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 50, y: 1, z: 50}
   m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!65 &1548599681 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65412142427112246, guid: 2474539e520bb9c45808a43c42528fc2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1057925153}
+--- !u!65 &1567416510 stripped
+BoxCollider:
+  m_PrefabParentObject: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1898595419}
 --- !u!1001 &1898595419
 Prefab:
   m_ObjectHideFlags: 0
@@ -4432,17 +4471,17 @@ Prefab:
     - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
       propertyPath: m_Size.x
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
       propertyPath: m_Size.y
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
       propertyPath: m_Size.z
-      value: 1
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 114992562083247792, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
@@ -4459,6 +4498,16 @@ Prefab:
         type: 2}
       propertyPath: DashTime
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
+        type: 2}
+      propertyPath: DashTrigger
+      value: 
+      objectReference: {fileID: 1567416510}
+    - target: {fileID: 114968206161874670, guid: c5dbc7940f81f844c95bddde59e44e2f,
+        type: 2}
+      propertyPath: DashImpactForce
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}

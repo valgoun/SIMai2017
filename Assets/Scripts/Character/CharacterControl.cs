@@ -19,6 +19,10 @@ public class CharacterControl : MonoBehaviour
     public float DashCoolDown = 3f;
     public float DashTime = 0.5f;
     public float DashStunedTime = 3f;
+    public float DashTriggerSize = 1.5f;
+    public float DashImpactForce = 30f;
+    public float DashImpactRetroForce = 20f;
+    public BoxCollider DashTrigger;
 
     public bool IsGrounded
     {
@@ -119,8 +123,13 @@ public class CharacterControl : MonoBehaviour
         {
             _canDash = false;
             _isDashing = true;
+            DashTrigger.size *= DashTriggerSize;
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
-            DOVirtual.DelayedCall(DashTime, () => _isDashing = false);
+            DOVirtual.DelayedCall(DashTime, () =>
+            {
+                _isDashing = false;
+                DashTrigger.size /= DashTriggerSize;
+            });
             _dashDirection = transform.forward;
             _body.AddForce(_dashDirection * _dashSpeed, ForceMode.VelocityChange);
         }
@@ -166,7 +175,8 @@ public class CharacterControl : MonoBehaviour
         {
             if (other.transform.GetComponentInParent<CharacterControl>().Stun(DashStunedTime))
             {
-                other.GetComponentInParent<Rigidbody>().AddForce(_dashDirection * _dashSpeed * 2f, ForceMode.VelocityChange);
+                other.GetComponentInParent<Rigidbody>().AddForce(_dashDirection * DashImpactForce, ForceMode.VelocityChange);
+                _body.AddForce(-_dashDirection * DashImpactRetroForce, ForceMode.VelocityChange);
             }
         }
         if (other.CompareTag("DeathTrigger"))
