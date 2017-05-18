@@ -22,7 +22,7 @@ public class CharacterControl : MonoBehaviour
     public float DashTriggerSize = 1.5f;
     public float DashImpactForce = 30f;
     public float DashImpactRetroForce = 20f;
-    public BoxCollider DashTrigger;
+    public Collider DashTrigger;
     [Header("Dash")]
     public float ShockWaveTime;
     public float ShockWaveForce;
@@ -72,10 +72,6 @@ public class CharacterControl : MonoBehaviour
         _groundChecker = transform.GetChild(0);
         _dashSpeed = DashDistance * (Mathf.Log(1f / (Time.fixedDeltaTime * Drag + 1)) / -Time.fixedDeltaTime);
         _jumpSpeed = Mathf.Sqrt(-2f * Physics.gravity.y * JumpHeight);
-        /*DOVirtual.DelayedCall(2f, () =>
-        {
-            _body.AddForce(Vector3.forward * _dashSpeed * 2f, ForceMode.VelocityChange);
-        });*/
     }
 
     public bool Stun(float time)
@@ -136,12 +132,12 @@ public class CharacterControl : MonoBehaviour
         {
             _canDash = false;
             _isDashing = true;
-            DashTrigger.size *= DashTriggerSize;
+            DashTrigger.gameObject.SetActive(true);
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             DOVirtual.DelayedCall(DashTime, () =>
             {
                 _isDashing = false;
-                DashTrigger.size /= DashTriggerSize;
+                DashTrigger.gameObject.SetActive(false);
             });
             _dashDirection = transform.forward;
             _body.AddForce(_dashDirection * _dashSpeed, ForceMode.VelocityChange);
