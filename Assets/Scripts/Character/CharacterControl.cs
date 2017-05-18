@@ -117,6 +117,10 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
+
+        if (_isShockWaving && _isGrounded == _body.useGravity)
+            Stomp();
+
         if (!_isCharging)
             _body.useGravity = !_isGrounded;
         if (!_body.useGravity)
@@ -232,6 +236,22 @@ public class CharacterControl : MonoBehaviour
         _body.velocity = vel;
     }
 
+    private void Stomp()
+    {
+        var pls = Physics.OverlapSphere(transform.position, ShockWaveExplosionRadius, PlayerMask);
+        foreach (var pl in pls)
+        {
+            if (pl.GetComponentInParent<Rigidbody>() != _body)
+            {
+                pl.GetComponentInParent<Rigidbody>().AddExplosionForce(_shockWaveCharge, transform.position, ShockWaveExplosionRadius, 1f, ForceMode.VelocityChange);
+                pl.GetComponentInParent<CharacterControl>().Stun(ShockWaveStunTime);
+            }
+
+        }
+        _isShockWaving = false;
+        Stun(ShockWaveRecoveryTime);
+    }
+
     /// <summary>
     /// OnCollisionEnter is called when this collider/rigidbody has begun
     /// touching another rigidbody/collider.
@@ -241,18 +261,7 @@ public class CharacterControl : MonoBehaviour
     {
         if (_isShockWaving)
         {
-            var pls = Physics.OverlapSphere(transform.position, ShockWaveExplosionRadius, PlayerMask);
-            foreach (var pl in pls)
-            {
-                if (pl.GetComponentInParent<Rigidbody>() != _body)
-                {
-                    pl.GetComponentInParent<Rigidbody>().AddExplosionForce(_shockWaveCharge, transform.position, ShockWaveExplosionRadius, 1f, ForceMode.VelocityChange);
-                    pl.GetComponentInParent<CharacterControl>().Stun(ShockWaveStunTime);
-                }
-
-            }
-            _isShockWaving = false;
-            Stun(ShockWaveRecoveryTime);
+            Stomp();
         }
     }
 
