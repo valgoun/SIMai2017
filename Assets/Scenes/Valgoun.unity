@@ -4432,17 +4432,17 @@ Prefab:
     - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
       propertyPath: m_Size.x
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
       propertyPath: m_Size.y
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 65449862546044952, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}
       propertyPath: m_Size.z
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114992562083247792, guid: c5dbc7940f81f844c95bddde59e44e2f,
         type: 2}

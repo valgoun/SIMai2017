@@ -12,14 +12,11 @@ public class CharacterControl : MonoBehaviour
     public float Drag = 5f;
     [Header("Jump")]
     public float JumpHeight = 1.5f;
-    public float JumpSpeed = 3f;
-    public Ease JumpEase;
     public LayerMask Ground;
     public float GroundDistance = 0.1f;
     [Header("Dash")]
     public float DashDistance = 2f;
     public float DashCoolDown = 3f;
-    public float DashImpactForce = 10f;
     public float DashTime = 0.5f;
     public float DashStunedTime = 3f;
 
