@@ -30,6 +30,7 @@ public class CharacterControl : MonoBehaviour
     public float ShockWaveForce;
     public float ShockWaveExplosionForce;
     public float ShockWaveExplosionRadius;
+    public float ShockWaveStunTime;
     public float ShockWaveRecoveryTime = 0.2f;
     public LayerMask PlayerMask;
 
@@ -244,7 +245,11 @@ public class CharacterControl : MonoBehaviour
             foreach (var pl in pls)
             {
                 if (pl.GetComponentInParent<Rigidbody>() != _body)
+                {
                     pl.GetComponentInParent<Rigidbody>().AddExplosionForce(_shockWaveCharge, transform.position, ShockWaveExplosionRadius, 1f, ForceMode.VelocityChange);
+                    pl.GetComponentInParent<CharacterControl>().Stun(ShockWaveStunTime);
+                }
+
             }
             _isShockWaving = false;
             Stun(ShockWaveRecoveryTime);
