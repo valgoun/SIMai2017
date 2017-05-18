@@ -18,11 +18,10 @@ public class CharacterControl : MonoBehaviour
     public float GroundDistance = 0.1f;
     [Header("Dash")]
     public float DashDistance = 2f;
-    public float DashSpeed = 3f;
-    public Ease DashEase;
     public float DashCoolDown = 3f;
     public float DashImpactForce = 10f;
-    public float DashImpactTime = 3f;
+    public float DashTime = 0.5f;
+    public float DashStunedTime = 3f;
 
     public bool IsGrounded
     {
@@ -63,6 +62,10 @@ public class CharacterControl : MonoBehaviour
         _groundChecker = transform.GetChild(0);
         _dashSpeed = DashDistance * (Mathf.Log(1f / (Time.fixedDeltaTime * Drag + 1)) / -Time.fixedDeltaTime);
         _jumpSpeed = Mathf.Sqrt(-2f * Physics.gravity.y * JumpHeight);
+        /*DOVirtual.DelayedCall(2f, () =>
+        {
+            _body.AddForce(Vector3.forward * _dashSpeed * 2f, ForceMode.VelocityChange);
+        });*/
     }
 
     public bool Stun(float time)
@@ -91,10 +94,6 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_isStunned)
-            return;
-        _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
-
         _isGrounded = Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground);
         _body.useGravity = !_isGrounded;
         if (!_body.useGravity)
@@ -103,6 +102,12 @@ public class CharacterControl : MonoBehaviour
             vel.y = 0;
             _body.velocity = vel;
         }
+
+        if (_isStunned)
+            return;
+        _axisInput = _player.GetAxis2D("Horizontal", "Vertical");
+
+
         if (_jumpAvailable == 0 && Physics.CheckSphere(_groundChecker.position, GroundDistance, Ground))
         {
             _jumpAvailable++;
@@ -118,6 +123,7 @@ public class CharacterControl : MonoBehaviour
             _canDash = false;
             _isDashing = true;
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
+            DOVirtual.DelayedCall(DashTime, () => _isDashing = false);
             _dashDirection = transform.forward;
             _body.AddForce(_dashDirection * _dashSpeed, ForceMode.VelocityChange);
         }
@@ -161,7 +167,7 @@ public class CharacterControl : MonoBehaviour
     {
         if (other.CompareTag("Player") && _isDashing)
         {
-            if (other.transform.GetComponentInParent<CharacterControl>().Stun(DashImpactTime))
+            if (other.transform.GetComponentInParent<CharacterControl>().Stun(DashStunedTime))
             {
                 other.GetComponentInParent<Rigidbody>().AddForce(_dashDirection * _dashSpeed * 2f, ForceMode.VelocityChange);
             }
