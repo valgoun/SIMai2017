@@ -286,8 +286,14 @@ MonoBehaviour:
   DashImpactForce: 300
   DashImpactRetroForce: 300
   DashTrigger: {fileID: 65449862546044952}
-  ShockWaveTime: 0
-  ShockWaveForce: 0
+  ShockWaveTime: 1
+  ShockWaveCooldown: 1
+  ShockWaveForce: 60
+  ShockWaveExplosionForce: 300
+  ShockWaveExplosionRadius: 10
+  PlayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &114992562083247792
 MonoBehaviour:
   m_ObjectHideFlags: 1
