@@ -4061,7 +4061,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4595132018328408, guid: 2273736862827bb4bac90561938ee81f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.76
+      value: 3.18
       objectReference: {fileID: 0}
     - target: {fileID: 4595132018328408, guid: 2273736862827bb4bac90561938ee81f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4086,6 +4086,15 @@ Prefab:
     - target: {fileID: 4595132018328408, guid: 2273736862827bb4bac90561938ee81f, type: 2}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 95500728087893898, guid: 2273736862827bb4bac90561938ee81f,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3afcec8d0ff68b94d9912b39b5ce45fc, type: 2}
+    - target: {fileID: 1764636341970552, guid: 2273736862827bb4bac90561938ee81f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2273736862827bb4bac90561938ee81f, type: 2}
@@ -4144,6 +4153,41 @@ Prefab:
     - target: {fileID: 4444135863669794, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: PlayerID
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 95275855290248932, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 71531ae795975954ba53f52d4d03f07a, type: 2}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: ShockWaveTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: ShockWaveForce
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: ShockWaveExplosionForce
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: ShockWaveExplosionRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114516794548240628, guid: 3e180b4a3f4aa314c98769052d77f59f,
+        type: 2}
+      propertyPath: ShockWaveStunTime
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
@@ -4316,6 +4360,50 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 95098584120718650, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3d36f377e0e960c488ae456b21f107ef, type: 2}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: PlayerID
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: ShockWaveTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: ShockWaveForce
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: ShockWaveExplosionForce
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: ShockWaveExplosionRadius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: ShockWaveStunTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114261245947373266, guid: 2474539e520bb9c45808a43c42528fc2,
+        type: 2}
+      propertyPath: ShockWaveRecoveryTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830636071087872, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
   m_IsPrefabParent: 0
@@ -4398,6 +4486,10 @@ Prefab:
     - target: {fileID: 4551472616505764, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437564344563344, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
