@@ -3712,6 +3712,7 @@ MonoBehaviour:
   - {fileID: 19}
   - {fileID: 41}
   - {fileID: 26}
+  CenterTimeDisparition: 60
 --- !u!114 &244
 MonoBehaviour:
   m_ObjectHideFlags: 0
