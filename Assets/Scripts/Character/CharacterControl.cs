@@ -25,6 +25,7 @@ public class CharacterControl : MonoBehaviour
     public Collider DashTrigger;
     [Header("Dash")]
     public float ShockWaveTime;
+    public float ShockWaveCooldown;
     public float ShockWaveForce;
     public float ShockWaveExplosionForce;
     public float ShockWaveExplosionRadius;
@@ -53,6 +54,7 @@ public class CharacterControl : MonoBehaviour
     private Vector2 _axisInput;
     private bool _isGrounded = true;
     private bool _canDash = true;
+    private bool _canShock = true;
     private bool _isDashing = false;
     private bool _isStunned = false;
     private bool _isCharging = false;
@@ -153,8 +155,10 @@ public class CharacterControl : MonoBehaviour
             _dashDirection = transform.forward;
             _body.AddForce(_dashDirection * _dashSpeed, ForceMode.VelocityChange);
         }
-        if (!_isGrounded && _player.GetButtonDown("ShockWave"))
+        if (!_isGrounded && _player.GetButtonDown("ShockWave") && _canShock)
         {
+            _canShock = false;
+            DOVirtual.DelayedCall(ShockWaveCooldown, () => _canShock = true);
             StartCoroutine(ShockWave());
         }
     }
