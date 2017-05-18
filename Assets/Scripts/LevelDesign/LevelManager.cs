@@ -27,6 +27,8 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
+        Sound_Manager.Instance.MUSIQUE_Ambience_Musique_IG();
+        Sound_Manager.Instance.MUSIQUE_Ambience_HotPot();
         foreach (GameObject c in Circles)
         {
             childsCount = c.transform.childCount;

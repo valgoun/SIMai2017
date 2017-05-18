@@ -161,6 +161,7 @@ public class CharacterControl : MonoBehaviour
         if (_player.GetButtonDown("Dash") && _canDash /*&& _axisInput != Vector2.zero*/)
         {
             _anim.SetBool("Dash", true);
+            Sound_Manager.Instance.SFX_Mouv_Dash();
             _canDash = false;
             _isDashing = true;
             DashTrigger.gameObject.SetActive(true);
@@ -289,6 +290,7 @@ public class CharacterControl : MonoBehaviour
         {
             if (other.transform.GetComponentInParent<CharacterControl>().Stun(DashStunedTime))
             {
+                Sound_Manager.Instance.SFX_Hit_Dash();
                 other.GetComponentInParent<Rigidbody>().AddForce(_dashDirection * DashImpactForce, ForceMode.VelocityChange);
             }
             _body.AddForce(-_dashDirection * DashImpactRetroForce, ForceMode.VelocityChange);

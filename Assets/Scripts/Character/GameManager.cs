@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public void KillPlayer()
     {
+        Sound_Manager.Instance.SFX_Death_Cook();
         PlayerAlive--;
         if (PlayerAlive <= 1)
             RestartGame();
