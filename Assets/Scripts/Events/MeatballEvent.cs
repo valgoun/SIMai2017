@@ -16,7 +16,6 @@ namespace Gameplay
         public override void Exec()
         {
             circle = LevelManager.Instance.GetRandomCircle();
-            Debug.Log(circle.GetComponent<RotationPan>().Id);
             if (!LevelManager.Instance.meatBalledcircle.Contains(circle))
             {
                 Instantiate(meatball, circle.transform.GetChild(circle.transform.childCount - 1).position, Quaternion.identity);

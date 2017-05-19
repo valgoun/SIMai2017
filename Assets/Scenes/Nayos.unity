@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: 206966297}
   - component: {fileID: 206966296}
   - component: {fileID: 206966300}
+  - component: {fileID: 206966301}
   m_Layer: 0
   m_Name: Image
   m_TagString: Untagged
@@ -846,6 +847,18 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!114 &206966301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 206966295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8631a66613dc49c41a5f3188f2615bdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 0}
 --- !u!1001 &207478750
 Prefab:
   m_ObjectHideFlags: 0
@@ -2119,46 +2132,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f598b35b3b4ccf04b91f3270e1a668c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerAlive: 4
+  PlayerAlive: 0
   canChangeRound: 0
   roundDisplay: {fileID: 206966295}
   roundAmount: 0
+  maxRoundAmount: 0
+  inMenu: 1
   roundDisplayText: {fileID: 2078161146}
+  endGameDisplay: {fileID: 0}
+  charactersSpawnPoints: []
+  RestartButton: {fileID: 0}
+  BackToMenuButton: {fileID: 0}
   characters:
   - {fileID: 2006762513}
   - {fileID: 1260871961}
   - {fileID: 83815882}
   - {fileID: 851058753}
   charactersPrefabs:
-  - {fileID: 0}
+  - {fileID: 1437564344563344, guid: c5dbc7940f81f844c95bddde59e44e2f, type: 2}
   - {fileID: 1764636341970552, guid: 2273736862827bb4bac90561938ee81f, type: 2}
   - {fileID: 1830636071087872, guid: 2474539e520bb9c45808a43c42528fc2, type: 2}
   - {fileID: 1684610566589182, guid: 3e180b4a3f4aa314c98769052d77f59f, type: 2}
-  playersDatas:
-  - id: 0
-    isAlive: 0
-    Score: 0
-    deathImage: {fileID: 0}
-    playerPortrait: {fileID: 0}
-    victoryStamps: []
-  - id: 0
-    isAlive: 0
-    Score: 0
-    deathImage: {fileID: 0}
-    playerPortrait: {fileID: 0}
-    victoryStamps: []
-  - id: 0
-    isAlive: 0
-    Score: 0
-    deathImage: {fileID: 0}
-    playerPortrait: {fileID: 0}
-    victoryStamps: []
-  - id: 0
-    isAlive: 0
-    Score: 0
-    deathImage: {fileID: 0}
-    playerPortrait: {fileID: 0}
-    victoryStamps: []
   playersID: 
 --- !u!4 &504465692
 Transform:
@@ -4172,6 +4166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionDuration: 0
+  roundDisplayText: {fileID: 2078161146}
   playerSelect:
     menuCameraPosition: {fileID: 1943759376}
     mainButton: {fileID: 331511694}

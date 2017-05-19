@@ -79,7 +79,6 @@ public class UIManager : MonoBehaviour {
 
     public void PauseGame()
     {
-        Debug.Log("zizi");
         Pause.SetActive(true);
         upblackbar.transform.DOMoveY(-4, 0.2f).SetRelative();
         downblackbar.transform.DOMoveY(4, 0.2f).SetRelative();

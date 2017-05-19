@@ -25,7 +25,6 @@ public class InstableStatus : Status {
 
             if (other.transform.tag == "Player" && isReady)
             {
-                Debug.Log(duration);
                 status = gameObject.AddComponent<DestroyedStatus>();
                 status.fallSpeed = fallSpeed;
                 status.duration = duration;

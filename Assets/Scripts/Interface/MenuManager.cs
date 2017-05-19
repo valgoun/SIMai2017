@@ -15,6 +15,8 @@ public class MenuManager : MonoBehaviour {
     [SerializeField]
     private float transitionDuration;
 
+    public Text roundDisplayText;
+
     [SerializeField]
     private Menu playerSelect;
 
@@ -47,7 +49,8 @@ public class MenuManager : MonoBehaviour {
         }
         Instance = this;
         previousPositions.Add(start);
-        
+
+        GameManager.Instance.roundDisplayText = roundDisplayText;
        
 	}
 	
@@ -107,6 +110,7 @@ public class MenuManager : MonoBehaviour {
 
     public void OnStartClick()
     {
+        GameManager.Instance.inMenu = false;
         SceneManager.LoadScene(1);
     }
 

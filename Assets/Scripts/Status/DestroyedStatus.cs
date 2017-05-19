@@ -15,7 +15,6 @@ public class DestroyedStatus : Status {
     {
         startPosition = transform.position;
         transform.DOMoveY(-5, fallSpeed);
-        Debug.Log(startPosition);
         if (duration != 0)
         {
             DOVirtual.DelayedCall(duration, () => transform.DOMoveY(startPosition.y, fallSpeed));
