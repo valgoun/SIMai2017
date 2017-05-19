@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: M_Ripples
+  m_Shader: {fileID: 4800000, guid: 51d916cad11787b45b50d503369bd2fa, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Difform:
+        m_Texture: {fileID: 2800000, guid: f11b21cdce951cc41a9cd2e1f307c569, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_3602:
+        m_Texture: {fileID: 2800000, guid: 17da6d53ec93a0444bd0f751b1d02477, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_4541:
+        m_Texture: {fileID: 2800000, guid: 2938b8f5b8fd1054d9c6c29893849d4c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _node_9255:
+        m_Texture: {fileID: 2800000, guid: 2938b8f5b8fd1054d9c6c29893849d4c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.5
+    - _node_2438: 0.14
+    - _node_5568: 0.055
+    - _node_6443: 0.058
+    - _node_7030: 1
+    m_Colors:
+    - _node_2019: {r: 0, g: 0, b: 0, a: 0}

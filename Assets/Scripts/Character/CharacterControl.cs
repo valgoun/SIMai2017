@@ -34,6 +34,10 @@ public class CharacterControl : MonoBehaviour
     public float ShockWaveStunTime;
     public float ShockWaveRecoveryTime = 0.2f;
     public LayerMask PlayerMask;
+    [Header("Fx")]
+    public GameObject DashFx;
+    public ParticleSystem StompFx;
+    public ParticleSystem ChargeFx;
 
     public bool IsGrounded
     {
@@ -94,6 +98,7 @@ public class CharacterControl : MonoBehaviour
         if (_isCharging)
         {
             StopAllCoroutines();
+            ChargeFx.Stop();
             _rotTween.Kill(true);
             _moveTween.Kill(true);
             _upTween.Kill(false);
@@ -161,6 +166,7 @@ public class CharacterControl : MonoBehaviour
         }
         if (_player.GetButtonDown("Dash") && _canDash /*&& _axisInput != Vector2.zero*/)
         {
+            DashFx.SetActive(true);
             _anim.SetBool("Dash", true);
             Sound_Manager.Instance.SFX_Mouv_Dash();
             _canDash = false;
@@ -169,6 +175,7 @@ public class CharacterControl : MonoBehaviour
             DOVirtual.DelayedCall(DashCoolDown, () => _canDash = true);
             DOVirtual.DelayedCall(DashTime, () =>
             {
+                DashFx.SetActive(false);
                 _anim.SetBool("Dash", false);
                 _isDashing = false;
                 DashTrigger.gameObject.SetActive(false);
@@ -204,6 +211,7 @@ public class CharacterControl : MonoBehaviour
             j.SetVibration(0f, 3f);
         }
 
+        ChargeFx.Play();
 
         while (_player.GetButton("ShockWave"))
         {
@@ -221,6 +229,7 @@ public class CharacterControl : MonoBehaviour
             j.StopVibration();
         }
 
+        ChargeFx.Stop();
         _rotTween.Kill(true);
         _moveTween.Kill(true);
         _upTween.Kill(false);
@@ -253,6 +262,7 @@ public class CharacterControl : MonoBehaviour
 
     private void Stomp()
     {
+        StompFx.Play();
         var pls = Physics.OverlapSphere(transform.position, ShockWaveExplosionRadius, PlayerMask);
         foreach (var pl in pls)
         {
@@ -296,6 +306,7 @@ public class CharacterControl : MonoBehaviour
             }
             _body.AddForce(-_dashDirection * DashImpactRetroForce, ForceMode.VelocityChange);
             _isDashing = false;
+            DashFx.SetActive(false);
         }
         if (other.CompareTag("DeathTrigger"))
         {

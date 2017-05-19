@@ -10,12 +10,6 @@ public class InstableStatus : Status
     public float fallSpeed { get; set; }
     private DestroyedStatus status;
 
-    void Start()
-    {
-        if (transform.childCount == 1)
-            transform.GetChild(0).DOShakeRotation(1f, new Vector3(15, 0, 15), 10, 90, false).SetLoops(-1);
-    }
-
     void OnCollisionStay(Collision other)
     {
         if (other.transform.tag == "Player" && isReady)

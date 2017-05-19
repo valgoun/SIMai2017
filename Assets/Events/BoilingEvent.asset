@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: BoilingEvent
   m_EditorClassIdentifier: 
   fallDuration: 2.5
-  quantity: 3
+  quantity: 2
   fallSpeed: 1
