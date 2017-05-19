@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ed3faf61a7f2834bbd639a64ca58feb, type: 3}
   m_Name: LadleEvent
   m_EditorClassIdentifier: 
-  modifierValue: 1.35
+  modifierValue: 1.25
