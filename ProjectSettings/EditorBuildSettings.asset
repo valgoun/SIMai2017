@@ -5,12 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Valgoun.unity
-    guid: d55069979eab0ce4c839017878610b44
   - enabled: 0
     path: Assets/Scenes/Nayos.unity
     guid: 0784a8048dbd09e488fc1a11968414a3
   - enabled: 0
+    path: Assets/Scenes/B2AOGHAOGH.unity
+    guid: d55069979eab0ce4c839017878610b44
+  - enabled: 0
     path: Assets/Scenes/NayosTestEvents2.unity
     guid: 35d883199d03da8489dd18a2030fe0eb
+  - enabled: 1
+    path: Assets/Scenes/GA 1.unity
+    guid: 596c884c115e752439ced008b6ae14ed
+  - enabled: 1
+    path: Assets/Scenes/Valgoun 1.unity
+    guid: 192dd03cfd28b1b45ac439863b8d65f3

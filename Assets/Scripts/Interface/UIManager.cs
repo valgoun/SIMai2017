@@ -4,7 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
 
     public static UIManager Instance;
 
@@ -36,13 +37,14 @@ public class UIManager : MonoBehaviour {
 
     public bool test;
 
-    public bool isPaused=false;
+    public bool isPaused = false;
 
     public int testValue;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         if (Instance)
         {
             Destroy(gameObject);
@@ -50,14 +52,15 @@ public class UIManager : MonoBehaviour {
         }
         Instance = this;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (test)
         {
             showPlayerDeath(testValue);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!isPaused)
@@ -74,8 +77,8 @@ public class UIManager : MonoBehaviour {
 
             isPaused = !isPaused;
         }
-        
-	}
+
+    }
 
     public void PauseGame()
     {
@@ -99,7 +102,8 @@ public class UIManager : MonoBehaviour {
     public void showPlayerDeath(int playerID)
     {
         playersDisplays[playerID].GetComponent<Image>().DOColor(Color.gray, 0.1f);
-        playersDisplays[playerID].transform.GetChild(0).gameObject.SetActive(true);
+        playersDisplays[playerID].transform.GetChild(0).GetComponent<Image>().DOColor(Color.gray, 0.1f);
+        playersDisplays[playerID].transform.GetChild(1).gameObject.SetActive(true);
     }
 
     public void voteActivation()

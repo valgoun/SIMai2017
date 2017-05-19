@@ -1,5 +1,5 @@
 
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +11,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public int PlayerAlive = 0;
+
+    public int playerAmount = 0;
     public static GameManager Instance { get; private set; }
 
     public bool canChangeRound = false;
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        
+
         if (Instance)
         {
             Destroy(gameObject);
@@ -68,9 +70,11 @@ public class GameManager : MonoBehaviour
         {
             foreach (Joystick j in ReInput.controllers.GetJoysticks())
             {
-                //characters[j.id].SetActive(true);
+
+                characters[j.id].SetActive(true);
                 playersID.Add(j.id);
                 PlayerAlive++;
+                playerAmount++;
             }
         }
 
@@ -83,12 +87,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-            if (canChangeRound)
+        if (canChangeRound)
+        {
+            if (ReInput.players.GetPlayer(0).GetButtonDown("MoveVertical"))
             {
-                if(ReInput.players.GetPlayer(0).GetButtonDown("MoveVertical"))
-                {
                 Debug.Log("tata");
-                if(maxRoundAmount < 9)
+                if (maxRoundAmount < 9)
                 {
                     roundAmount++;
                     maxRoundAmount++;
@@ -98,22 +102,22 @@ public class GameManager : MonoBehaviour
                     roundAmount = 1;
                     maxRoundAmount = 1;
                 }
-                }
-                else if (ReInput.players.GetPlayer(0).GetNegativeButtonDown("MoveVertical"))
-                {
+            }
+            else if (ReInput.players.GetPlayer(0).GetNegativeButtonDown("MoveVertical"))
+            {
                 Debug.Log("toto");
-                    if (maxRoundAmount > 1)
-                    {
+                if (maxRoundAmount > 1)
+                {
                     roundAmount--;
                     maxRoundAmount--;
-                    }
-                    else
-                    {
+                }
+                else
+                {
                     roundAmount = 9;
                     maxRoundAmount = 9;
-                    }
                 }
             }
+        }
         if (inMenu && roundDisplayText)
         {
             if (roundDisplayText.text != roundAmount.ToString())
@@ -133,11 +137,11 @@ public class GameManager : MonoBehaviour
             NewRound();
             roundAmount--;
         }
-        else if(PlayerAlive <= 1 && roundAmount <= 1)
+        else if (PlayerAlive <= 1 && roundAmount <= 1)
         {
             EndGame();
         }
-            //EndTurn();
+        //EndTurn();
     }
 
     public void startRound()
@@ -145,6 +149,7 @@ public class GameManager : MonoBehaviour
         if (endGameDisplay.activeInHierarchy)
         {
             endGameDisplay.SetActive(false);
+
         }
         foreach (int id in playersID)
         {
@@ -154,14 +159,15 @@ public class GameManager : MonoBehaviour
 
     public void NewRound()
     {
+        PlayerAlive = playerAmount;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    
+
     public void RestartGame()
     {
         Debug.Log("toto");
         roundAmount = maxRoundAmount;
-
+        PlayerAlive = playerAmount;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
