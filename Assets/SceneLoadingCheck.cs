@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 
 public class SceneLoadingCheck : MonoBehaviour {
 
     public List<Transform> playersSpawn = new List<Transform>();
 
-	// Use this for initialization
-	void Start () {
+    public GameObject endGameDisplay;
+
+    public Button RestartButton;
+
+    public Button BackToMenuButton;
+    // Use this for initialization
+    void Start () {
         OnSceneLoaded();
 	}
 	
@@ -20,7 +25,10 @@ public class SceneLoadingCheck : MonoBehaviour {
 
     public void OnSceneLoaded()
     {
-        Debug.Log("toto");
-        GameManager.Instance.startGame(playersSpawn);
+        GameManager.Instance.charactersSpawnPoints = playersSpawn;
+        GameManager.Instance.endGameDisplay = endGameDisplay;
+        GameManager.Instance.RestartButton = RestartButton;
+        GameManager.Instance.BackToMenuButton = BackToMenuButton;
+        GameManager.Instance.startRound();
     }
 }

@@ -1,16 +1,37 @@
+
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Rewired;
+using UnityEngine.EventSystems;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public int PlayerAlive = 0;
     public static GameManager Instance { get; private set; }
 
-    private Camera _main;
+    public bool canChangeRound = false;
+
+    public GameObject roundDisplay;
+
+    public int roundAmount = 0;
+
+    public int maxRoundAmount = 0;
+
+    public bool inMenu = true;
+
+    public Text roundDisplayText;
+
+    public GameObject endGameDisplay;
+
+    public List<Transform> charactersSpawnPoints = new List<Transform>();
+
+    public Button RestartButton;
+
+    public Button BackToMenuButton;
 
     [SerializeField]
     private GameObject[] characters;
@@ -26,24 +47,28 @@ public class GameManager : MonoBehaviour
     /// </summary>
     void Awake()
     {
-
+        
         if (Instance)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
+
         DontDestroyOnLoad(gameObject);
+
 
         ReInput.ControllerConnectedEvent += OnControllerConnected;
 
         ReInput.ControllerDisconnectedEvent += OnControllerDisconnected;
 
+        roundAmount = 3;
+
         if (ReInput.controllers.joystickCount != 0)
         {
             foreach (Joystick j in ReInput.controllers.GetJoysticks())
             {
-               	//characters[j.id].SetActive(true);
+                //characters[j.id].SetActive(true);
                 playersID.Add(j.id);
                 PlayerAlive++;
             }
@@ -52,32 +77,105 @@ public class GameManager : MonoBehaviour
         foreach (var pl in ReInput.players.AllPlayers)
         {
             if (pl == ReInput.players.GetSystemPlayer()) continue;
-            pl.AddInputEventDelegate(_ => RestartGame(), UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Restart");
+            pl.AddInputEventDelegate(_ => NewRound(), UpdateLoopType.Update, InputActionEventType.ButtonJustPressed, "Restart");
         }
-        _main = Camera.main;
     }
 
-    public void KillPlayer()
+    void Update()
     {
-        Sound_Manager.Instance.SFX_Death_Cook();
-        PlayerAlive--;
-        if (PlayerAlive <= 1)
-            RestartGame();
-        _main.DOShakePosition(0.5f, 0.8f, 15, 45);
-    }
-
-    public void startGame(List<Transform> charactersSpawnPoints)
-    {
-        foreach(int id in playersID)
+            if (canChangeRound)
+            {
+                if(ReInput.players.GetPlayer(0).GetButtonDown("MoveVertical"))
+                {
+                Debug.Log("tata");
+                if(maxRoundAmount < 9)
+                {
+                    roundAmount++;
+                    maxRoundAmount++;
+                }
+                else
+                {
+                    roundAmount = 1;
+                    maxRoundAmount = 1;
+                }
+                }
+                else if (ReInput.players.GetPlayer(0).GetNegativeButtonDown("MoveVertical"))
+                {
+                Debug.Log("toto");
+                    if (maxRoundAmount > 1)
+                    {
+                    roundAmount--;
+                    maxRoundAmount--;
+                    }
+                    else
+                    {
+                    roundAmount = 9;
+                    maxRoundAmount = 9;
+                    }
+                }
+            }
+        if (inMenu && roundDisplayText)
         {
-            Instantiate(charactersPrefabs[id], charactersSpawnPoints[id].position, Quaternion.identity);
+            if (roundDisplayText.text != roundAmount.ToString())
+            {
+                Debug.Log(roundAmount);
+                roundDisplayText.text = roundAmount.ToString();
+            }
         }
     }
 
+    public void KillPlayer(CharacterControl player)
+    {
+        PlayerAlive--;
+        UIManager.Instance.showPlayerDeath(player.PlayerID);
+        if (PlayerAlive <= 1 && roundAmount > 0)
+        {
+            NewRound();
+            roundAmount--;
+        }
+        else if(PlayerAlive <= 1 && roundAmount <= 1)
+        {
+            EndGame();
+        }
+            //EndTurn();
+    }
+
+    public void startRound()
+    {
+        if (endGameDisplay.activeInHierarchy)
+        {
+            endGameDisplay.SetActive(false);
+        }
+        foreach (int id in playersID)
+        {
+            Instantiate(charactersPrefabs[id], charactersSpawnPoints[id].position, Quaternion.identity).GetComponent<CharacterControl>();
+        }
+    }
+
+    public void NewRound()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
     public void RestartGame()
     {
-        Debug.Log("Restart");
+        Debug.Log("toto");
+        roundAmount = maxRoundAmount;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BackToMenu()
+    {
+        inMenu = true;
+        SceneManager.LoadScene(0);
+    }
+
+    public void EndGame()
+    {
+        endGameDisplay.SetActive(true);
+        RestartButton.onClick.AddListener(() => RestartGame());
+        BackToMenuButton.onClick.AddListener(() => BackToMenu());
     }
 
     public void OnControllerConnected(ControllerStatusChangedEventArgs args)
@@ -88,5 +186,16 @@ public class GameManager : MonoBehaviour
     public void OnControllerDisconnected(ControllerStatusChangedEventArgs args)
     {
         characters[args.controllerId].SetActive(false);
+    }
+
+    public void OnSelect()
+    {
+        Debug.Log("tutu");
+        canChangeRound = true;
+    }
+
+    public void OnDeselect()
+    {
+        canChangeRound = false;
     }
 }
