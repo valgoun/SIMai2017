@@ -5,138 +5,161 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    public List<GameObject> Circles;
-    public float CenterTimeDisparition = 60f;
-    public static LevelManager Instance { get; private set; }
+	public List<GameObject> Circles;
+	public float CenterTimeDisparition = 60f;
 
-    private int childsCount;
+	public static LevelManager Instance { get; private set; }
 
-    public List<GameObject> destroyedSectors = new List<GameObject>();
+	private int childsCount;
 
-    public List<GameObject> meatBalledcircle = new List<GameObject>();
+	public List<GameObject> destroyedSectors = new List<GameObject> ();
 
-    private List<GameObject> Sectors = new List<GameObject>();
+	public List<GameObject> meatBalledcircle = new List<GameObject> ();
 
-    /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    void Awake()
-    {
-        if (Instance)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-    }
+	private List<GameObject> Sectors = new List<GameObject> ();
 
-    void Start()
-    {
-        Sound_Manager.Instance.MUSIQUE_Ambience_Musique_IG();
-        Sound_Manager.Instance.MUSIQUE_Ambience_HotPot();
-        foreach (GameObject c in Circles)
-        {
-            childsCount = c.transform.childCount;
-            if (childsCount > 1)
-                for (int i = 0; i < childsCount - 2; i++)
-                {
-                    Sectors.Add(c.transform.GetChild(i).gameObject);
-                }
-        }
-        Destroy(Circles[0], CenterTimeDisparition);
-    }
+	/// <summary>
+	/// Awake is called when the script instance is being loaded.
+	/// </summary>
+	void Awake ()
+	{
+		if (Instance) {
+			Destroy (gameObject);
+			return;
+		}
+		Instance = this;
+	}
 
-    public List<GameObject> GetRandomsSectors(int quantity)
-    {
+	void Start ()
+	{
+		Sound_Manager.Instance.MUSIQUE_Ambience_Musique_IG ();
+		Sound_Manager.Instance.MUSIQUE_Ambience_HotPot ();
+		foreach (GameObject c in Circles) {
+			childsCount = c.transform.childCount;
+			if (childsCount > 1)
+				for (int i = 0; i < childsCount - 2; i++) {
+					Sectors.Add (c.transform.GetChild (i).gameObject);
+				}
+		}
+		Destroy (Circles [0], CenterTimeDisparition);
+	}
 
-        List<GameObject> listToreturn = new List<GameObject>();
-        int randomIndex;
+	public List<GameObject> GetRandomsSectors (int quantity)
+	{
 
-        for (int i = 0; i < quantity; i++)
-        {
-            randomIndex = Random.Range(0, Sectors.Count);
-            if (!listToreturn.Contains(Sectors[randomIndex]))
-            {
-                listToreturn.Add(Sectors[randomIndex]);
-            }
-        }
+		List<GameObject> listToreturn = new List<GameObject> ();
+		int randomIndex;
 
-        return listToreturn;
-    }
+		for (int i = 0; i < quantity; i++) {
+			randomIndex = Random.Range (0, Sectors.Count);
+			if (!listToreturn.Contains (Sectors [randomIndex])) {
+				listToreturn.Add (Sectors [randomIndex]);
+			}
+		}
+
+		return listToreturn;
+	}
+
+	public List<GameObject> GetRandomsSectors (int quantity, System.Func<GameObject, bool> predicate)
+	{
+
+		List<GameObject> listToreturn = new List<GameObject> ();
+		var candidates = Sectors.Where (predicate).ToList ();
+		if (candidates.Count == 0)
+			return listToreturn;
+		int randomIndex;
+
+		for (int i = 0; i < quantity; i++) {
+			randomIndex = Random.Range (0, candidates.Count);
+			if (!listToreturn.Contains (candidates [randomIndex])) {
+				listToreturn.Add (candidates [randomIndex]);
+			}
+		}
+
+		return listToreturn;
+	}
+
+	public GameObject GetRandomCircle ()
+	{
+		GameObject circleToReturn = null;
+		int randomIndex = Random.Range (1, Circles.Count);
+
+		if (Circles [randomIndex]) {
+			circleToReturn = Circles [randomIndex];
+		}
+
+		return circleToReturn;
+	}
+
+	public GameObject GetRandomCircle (System.Func<GameObject, bool> predicate)
+	{
+		GameObject circleToReturn = null;
+		var candidates = Circles.Where (predicate).ToList ();
+		if (candidates.Count == 0)
+			return circleToReturn;
+		int randomIndex = Random.Range (1, candidates.Count);
+
+		if (candidates [randomIndex]) {
+			circleToReturn = candidates [randomIndex];
+		}
+
+		return circleToReturn;
+	}
 
 
-    public GameObject GetRandomCircle()
-    {
-        GameObject circleToReturn = null;
-        int randomIndex = Random.Range(1, Circles.Count);
+	public GameObject GetSpecificCircle (int index)
+	{
+		GameObject circleToReturn = null;
 
-        if (Circles[randomIndex])
-        {
-            circleToReturn = Circles[randomIndex];
-        }
+		if (Circles [index]) {
+			circleToReturn = Circles [index];
+		}
 
-        return circleToReturn;
-    }
+		return circleToReturn;
+	}
 
 
-    public GameObject GetSpecificCircle(int index)
-    {
-        GameObject circleToReturn = null;
+	public List<GameObject> GetRandomsSectorsFromSpecificCircle (int circleIndex, int quantity)
+	{
 
-        if (Circles[index])
-        {
-            circleToReturn = Circles[index];
-        }
+		List<GameObject> listToReturn = new List<GameObject> ();
+		int randomIndex;
 
-        return circleToReturn;
-    }
+		if (quantity > Circles [circleIndex].transform.childCount) {
+			quantity = Circles [circleIndex].transform.childCount;
+		}
 
 
-    public List<GameObject> GetRandomsSectorsFromSpecificCircle(int circleIndex, int quantity)
-    {
+		for (int i = 0; i < quantity; i++) {
+			randomIndex = Random.Range (0, Circles [circleIndex].transform.childCount);
+			if (!listToReturn.Contains (Circles [circleIndex].transform.GetChild (randomIndex).gameObject)) {
+				listToReturn.Add (Circles [circleIndex].transform.GetChild (randomIndex).gameObject);
+			}
+		}
 
-        List<GameObject> listToReturn = new List<GameObject>();
-        int randomIndex;
+		return listToReturn;
+	}
 
-        if (quantity > Circles[circleIndex].transform.childCount)
-        {
-            quantity = Circles[circleIndex].transform.childCount;
-        }
+	public List<GameObject> GetSpecificSectorsFromSpecifiCircles (int circleIndex, List<int> sectorsIndex)
+	{
 
+		List<GameObject> listToReturn = new List<GameObject> ();
 
-        for (int i = 0; i < quantity; i++)
-        {
-            randomIndex = Random.Range(0, Circles[circleIndex].transform.childCount);
-            if (!listToReturn.Contains(Circles[circleIndex].transform.GetChild(randomIndex).gameObject))
-            {
-                listToReturn.Add(Circles[circleIndex].transform.GetChild(randomIndex).gameObject);
-            }
-        }
+		foreach (int i in sectorsIndex) {
+			listToReturn.Add (Circles [circleIndex].transform.GetChild (i).gameObject);
+		}
 
-        return listToReturn;
-    }
+		return listToReturn;
+	}
 
-    public List<GameObject> GetSpecificSectorsFromSpecifiCircles(int circleIndex, List<int> sectorsIndex)
-    {
+	public List<GameObject> getAllCircles ()
+	{
+		return Circles;
+	}
 
-        List<GameObject> listToReturn = new List<GameObject>();
-
-        foreach (int i in sectorsIndex)
-        {
-            listToReturn.Add(Circles[circleIndex].transform.GetChild(i).gameObject);
-        }
-
-        return listToReturn;
-    }
-
-    public List<GameObject> getAllCircles()
-    {
-        return Circles;
-    }
-
-    public List<GameObject> getAllSectors()
-    {
-        return Sectors;
-    }
+	public List<GameObject> getAllSectors ()
+	{
+		return Sectors;
+	}
 
 }

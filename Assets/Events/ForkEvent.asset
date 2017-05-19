@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8ea12b2942ab84fbec36c203bf6252, type: 3}
   m_Name: ForkEvent
   m_EditorClassIdentifier: 
-  heightModifier: 1
-  moveSpeed: 1
-  quantity: 3
+  heightModifier: 3
+  moveSpeed: 2
+  quantity: 4

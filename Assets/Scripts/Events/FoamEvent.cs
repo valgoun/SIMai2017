@@ -6,39 +6,36 @@ using UnityEditor;
 
 namespace Gameplay
 {
-    public class FoamEvent : Event
-    {
+	public class FoamEvent : Event
+	{
 
-        private List<GameObject> sectors = new List<GameObject>();
+		private List<GameObject> sectors = new List<GameObject> ();
 
-        [Tooltip("Nombre de secteurs affectés par l'évènement")]
-        [SerializeField]
-        private int quantity;
+		[Tooltip ("Nombre de secteurs affectés par l'évènement")]
+		[SerializeField]
+		private int quantity;
 
-        [Tooltip("Durée avant que la plateforme remonte")]
-        [SerializeField]
-        private float duration;
+		[Tooltip ("Durée avant que la plateforme remonte")]
+		[SerializeField]
+		private float duration;
 
-        [Tooltip("Vitesse de chute de la plateforme")]
-        [SerializeField]
-        private float fallSpeed;
+		[Tooltip ("Vitesse de chute de la plateforme")]
+		[SerializeField]
+		private float fallSpeed;
 
-        private DestroyedStatus status;
+		private DestroyedStatus status;
 
-        public override void Exec()
-        {
-            
-            sectors = LevelManager.Instance.GetRandomsSectors(quantity);
-            foreach(GameObject s in sectors)
-            {
-                if (!s.GetComponent<DestroyedStatus>())
-                {
-                    status = s.AddComponent<DestroyedStatus>();
-                    status.fallSpeed = fallSpeed;
-                    status.duration = duration;
-                    status.exec();
-                }
-            }
-        }
-    }
+		public override void Exec ()
+		{
+			Debug.Log ("Lancement");
+			sectors = LevelManager.Instance.GetRandomsSectors (quantity, x => !x.GetComponent<DestroyedStatus> ());
+			foreach (GameObject s in sectors) {
+				status = s.AddComponent<DestroyedStatus> ();
+				status.fallSpeed = fallSpeed;
+				status.duration = duration;
+				status.exec ();
+				Debug.Log ("End");
+			}
+		}
+	}
 }

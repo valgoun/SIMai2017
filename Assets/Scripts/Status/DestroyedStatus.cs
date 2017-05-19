@@ -18,7 +18,7 @@ public class DestroyedStatus : Status {
         Debug.Log(startPosition);
         if (duration != 0)
         {
-            DOVirtual.DelayedCall(duration, () => transform.DOMoveY(startPosition.y, fallSpeed));
+			DOVirtual.DelayedCall(duration, () => restore());
         }
         else
         {

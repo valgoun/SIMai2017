@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64697cde40d8f3458847a6c5c75b3a5, type: 3}
   m_Name: PotatoEvent
   m_EditorClassIdentifier: 
-  quantity: 0
-  fallSpeed: 0
+  quantity: 1
+  fallSpeed: 1
