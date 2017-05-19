@@ -27,17 +27,14 @@ namespace Gameplay
 
         public override void Exec()
         {
-            
-            sectors = LevelManager.Instance.GetRandomsSectors(quantity);
-            foreach(GameObject s in sectors)
+
+            sectors = LevelManager.Instance.GetRandomsSectors(quantity, x => !x.GetComponent<DestroyedStatus>());
+            foreach (GameObject s in sectors)
             {
-                if (!s.GetComponent<DestroyedStatus>())
-                {
-                    status = s.AddComponent<DestroyedStatus>();
-                    status.fallSpeed = fallSpeed;
-                    status.duration = duration;
-                    status.exec();
-                }
+                status = s.AddComponent<DestroyedStatus>();
+                status.fallSpeed = fallSpeed;
+                status.duration = duration;
+                status.exec();
             }
         }
     }

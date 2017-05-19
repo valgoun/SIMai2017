@@ -12,7 +12,6 @@ namespace Gameplay
 
         private MovedStatus status;
 
-        private bool canMove = true;
 
         [Tooltip("modificateur de hauteur")]
         [SerializeField]
@@ -28,9 +27,11 @@ namespace Gameplay
 
         public override void Exec()
         {
+            Debug.Log("PROUTOPIRUIUSPEI");
             sectors = LevelManager.Instance.GetRandomsSectors(quantity);
             foreach (GameObject s in sectors)
             {
+                var canMove = true;
                 if (s.GetComponent<DestroyedStatus>())
                 {
                     canMove = false;

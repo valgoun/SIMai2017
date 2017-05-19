@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class DestroyedStatus : Status {
+public class DestroyedStatus : Status
+{
 
     public float fallSpeed { get; set; }
 
@@ -18,7 +19,7 @@ public class DestroyedStatus : Status {
         Debug.Log(startPosition);
         if (duration != 0)
         {
-            DOVirtual.DelayedCall(duration, () => transform.DOMoveY(startPosition.y, fallSpeed));
+            DOVirtual.DelayedCall(duration, () => restore());
         }
         else
         {
@@ -32,7 +33,7 @@ public class DestroyedStatus : Status {
         LevelManager.Instance.destroyedSectors.Remove(transform.gameObject);
         status = GetComponents<Status>();
 
-        foreach(Status s in status)
+        foreach (Status s in status)
         {
             if (!(s is DestroyedStatus))
             {

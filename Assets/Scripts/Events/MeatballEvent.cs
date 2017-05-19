@@ -15,7 +15,7 @@ namespace Gameplay
 
         public override void Exec()
         {
-            circle = LevelManager.Instance.GetRandomCircle();
+            circle = LevelManager.Instance.GetRandomCircle(x => !LevelManager.Instance.meatBalledcircle.Contains(x));
             Debug.Log(circle.GetComponent<RotationPan>().Id);
             if (!LevelManager.Instance.meatBalledcircle.Contains(circle))
             {

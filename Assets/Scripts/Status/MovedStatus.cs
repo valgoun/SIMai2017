@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class MovedStatus : Status {
+public class MovedStatus : Status
+{
 
     private Vector3 position;
 
@@ -19,25 +20,25 @@ public class MovedStatus : Status {
         //if(GetComponent<DestroyedStatus>())
 
         position = transform.position;
-        if(position.y == 0)
+        if (position.y == 0)
         {
-            random = UnityEngine.Random.Range(0,2);
+            random = UnityEngine.Random.Range(0, 2);
             switch (random)
             {
                 case 0:
                     transform.DOMoveY(heightModifier, moveSpeed).SetRelative();
                     break;
                 case 1:
-                    transform.DOMoveY(-heightModifier, moveSpeed).SetRelative();
+                    transform.DOMoveY(heightModifier, moveSpeed).SetRelative();
                     break;
             }
         }
-        else if(position.y < 0)
+        else if (position.y < 0)
         {
             transform.DOMoveY(heightModifier, moveSpeed).SetRelative();
 
         }
-        else if(position.y > 0)
+        else if (position.y > 0)
         {
             transform.DOMoveY(-heightModifier, moveSpeed).SetRelative();
         }

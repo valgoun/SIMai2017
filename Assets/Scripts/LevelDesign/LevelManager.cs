@@ -64,6 +64,27 @@ public class LevelManager : MonoBehaviour
         return listToreturn;
     }
 
+    public List<GameObject> GetRandomsSectors(int quantity, System.Func<GameObject, bool> predicate)
+    {
+
+        List<GameObject> listToreturn = new List<GameObject>();
+        var candidates = Sectors.Where(predicate).ToList();
+        if (candidates.Count == 0)
+            return listToreturn;
+        int randomIndex;
+
+        for (int i = 0; i < quantity; i++)
+        {
+            randomIndex = Random.Range(0, candidates.Count);
+            if (!listToreturn.Contains(candidates[randomIndex]))
+            {
+                listToreturn.Add(candidates[randomIndex]);
+            }
+        }
+
+        return listToreturn;
+    }
+
 
     public GameObject GetRandomCircle()
     {
@@ -73,6 +94,22 @@ public class LevelManager : MonoBehaviour
         if (Circles[randomIndex])
         {
             circleToReturn = Circles[randomIndex];
+        }
+
+        return circleToReturn;
+    }
+
+    public GameObject GetRandomCircle(System.Func<GameObject, bool> predicate)
+    {
+        GameObject circleToReturn = null;
+        var candidates = Circles.Where(predicate).ToList();
+        if (candidates.Count == 0)
+            return circleToReturn;
+        int randomIndex = Random.Range(1, candidates.Count);
+
+        if (candidates[randomIndex])
+        {
+            circleToReturn = candidates[randomIndex];
         }
 
         return circleToReturn;
