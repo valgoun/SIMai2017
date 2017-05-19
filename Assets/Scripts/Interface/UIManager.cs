@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
+    public static UIManager Instance;
+
     [SerializeField]
     private GameObject[] playersDisplays;
 
@@ -41,8 +43,13 @@ public class UIManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
-	}
+        if (Instance)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -93,6 +100,7 @@ public class UIManager : MonoBehaviour {
     public void showPlayerDeath(int playerID)
     {
         playersDisplays[playerID].GetComponent<Image>().DOColor(Color.gray, 0.1f);
+        playersDisplays[playerID].transform.GetChild(0).gameObject.SetActive(true);
     }
 
     public void voteActivation()

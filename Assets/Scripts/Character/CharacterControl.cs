@@ -8,6 +8,10 @@ public class CharacterControl : MonoBehaviour
 {
     public int PlayerID = 0;
 
+    public int score = 0;
+
+    public bool isAlive = true;
+
     public float Speed = 5.0f;
     public float MaxVelocity = 450f;
     public float Drag = 5f;
@@ -299,7 +303,7 @@ public class CharacterControl : MonoBehaviour
         }
         if (other.CompareTag("DeathTrigger"))
         {
-            GameManager.Instance.KillPlayer();
+            GameManager.Instance.KillPlayer(this);
             Destroy(gameObject);
 
             foreach (Joystick j in _player.controllers.Joysticks)

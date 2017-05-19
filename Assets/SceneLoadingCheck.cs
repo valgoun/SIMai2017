@@ -21,6 +21,7 @@ public class SceneLoadingCheck : MonoBehaviour {
     public void OnSceneLoaded()
     {
         Debug.Log("toto");
-        GameManager.Instance.startGame(playersSpawn);
+        GameManager.Instance.charactersSpawnPoints = playersSpawn;
+        GameManager.Instance.startGame();
     }
 }
